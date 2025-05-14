@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документооборот</title>
+    <link rel="stylesheet" href="for_point.css" />
+
+
+    <style>
+        .container_zakaz {
+            max-width: 100%;
+            width: 80%;
+            background: #f9f9f9;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .order-number {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .order-status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+
+        .status-new {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .status-processing {
+            display: flex;
+            background-color: #333a55a9;
+            ;
+            color: white;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-completed {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            padding: 10px;
+            color: #ffffff;
+            background-color: #283150;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-size: 18px;
+        }
+
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .product-list th,
+        .product-list td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .product-list td {
+            /* padding-top: 60px; */
+            font-size: 16px;
+        }
+
+        .product-list p {
+            font-size: 16px;
+        }
+
+        .product-list th {
+            background-color: #333a55a9;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .product-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .total-summary {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .total-summary p {
+            font-size: 19px;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .download-link:hover {
+            background-color: #2980b9;
+        }
+
+        .seller-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            padding-left: 20px;
+            font-size: 18px;
+            border-top: 1px solid #eee;
+        }
+
+        button {
+            padding: 0px;
+            height: 50px;
+            width: 150px;
+            background: #333a5500;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            color: #c6d0ff;
+            /* Новый цвет текста при наведении */
+            transform: scale(1.05);
+            /* Увеличение на 5% */
+            text-shadow: 0 0 5px rgba(77, 171, 247, 0.5);
+            /* Добавил легкое свечение */
+        }
+
+        .order-status select {
+            height: 45px;
+            width: 250px;
+            padding: 5px 10px;
+            color: white;
+
+            border: 1px solid #050044cc;
+            border-radius: 10px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.178);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            appearance: none;
+        }
+
+        .order-status option {
+            color: black;
+        }
+
+        .order-status select:active {
+            border-color: #283150;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <header>
+            <div class="nav-and-search">
+                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+            </div>
+            <div class="icons">
+                <a href="#user"> <img height="35px" th:src="@{img/header/user.png}"></a>
+            </div>
+
+        </header>
+        <div class="container">
+            <div class="sidebar">
+                <a>Заказы</a>
+                <a>Товары на складе</a>
+                <a>Отчетность</a>
+                <a>Каталог</a> 
+                <div class="logo-container">
+                    <img height="150px" th:src="@{img/body/forLoginRegistration/germes.png}" alt="">
+                </div>
+            </div>
+            <div class="container_zakaz">
+                <div class="order-header">
+                    <h1>Заказ: Диван "Лорд"</h1>
+                    <div>
+                        <span class="order-number">№ 23456789</span>
+                    </div>
+                </div>
+                <div class="order-status status-processing" id="statusContainer">
+                    <div style="display: grid;grid-template-columns: 1fr 1fr;gap: 10px 30px;     align-items: center;">
+                    <label for="status" style="font-weight: lighter;">Статус заказа:</label>
+                    <div id="status">
+                        <span id="statusText">В обработке</span>
+                        <select id="statusSelect" style="display: none;">
+                            <option value="processing">В обработке</option>
+                            <option value="shipped">В доставке</option>
+                            <option value="canceled">Доставлен</option>
+                            <option value="delivered">Оплачен</option>
+                            <option value="canceled">Отменен</option>
+                        </select>
+                    </div>
+                    <label for="statusOplaty" style="font-weight: lighter;">Статус оплаты:</label>
+                    <div id="statusOplaty">
+                        <span id="statusMoney">Не оплачен</span>
+                        <select id="statusSelectMoney" style="display: none;">
+                            <option value="processing">Не оплачен</option>
+                            <option value="shipped">В доставке</option>
+                            <option value="canceled">Доставлен</option>
+                            <option value="delivered">Оплачен</option>
+                            <option value="canceled">Отменен</option>
+                        </select>
+                    </div>
+                </div>
+                
+                    <button id="changeButton">Изменить</button>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Характеристики товара</div>
+                    <table class="product-list">
+                        <thead>
+                            <tr>
+                                <th>Наименование</th>
+                                <th>Характеристики</th>
+                                <th>Количество</th>
+                                <th>Цена</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Диван Лорд</td>
+                                <td>
+                                    <p>Габрит:</p>
+                                    <p>Спальное место:</p>
+                                </td>
+                                <td>1</td>
+                                <td>54 990 ₽</td>
+                            </tr>
+                            <tr>
+                                <td>Чехол для ноутбука</td>
+                                <td>Черный, водоотталкивающий</td>
+                                <td>1</td>
+                                <td>1 490 ₽</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="total-summary">
+                        <p>Стоимость товаров: 56 480 ₽</p>
+                        <div style="font-size: 1.2em; margin-top: 5px;">Итого: 56 980 ₽</div>
+                    </div>
+                </div>
+
+                <div class="two-columns">
+                    <div class="column">
+                        <div class="section">
+                            <div class="section-title">Данные магазина</div>
+                            <p><strong>Наименование:</strong> Иванов Иван Иванович</p>
+                            <p><strong>Адрес:</strong>г. Уфа</p>
+                            <p><strong>Телефон:</strong> +7 (123) 456-78-90</p>
+                            <p><strong>Email:</strong> ivanov@example.com</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Документы</div>
+                    <a href="/documents/contract.docx" class="download-link">Скачать договор (DOCX)</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('changeButton').addEventListener('click', function () {
+            const statusText = document.getElementById('statusText');
+            const statusSelect = document.getElementById('statusSelect');
+
+            if (statusText.style.display !== 'none') {
+                // Показываем выпадающий список и скрываем текст
+                statusText.style.display = 'none';
+                statusSelect.style.display = 'inline-block';
+                this.textContent = 'Сохранить';
+            } else {
+                // Сохраняем изменения, скрываем список и показываем текст
+                statusText.style.display = 'inline';
+                statusText.textContent = statusSelect.options[statusSelect.selectedIndex].text;
+                statusSelect.style.display = 'none';
+                this.textContent = 'Изменить';
+            }
+
+            const statusMoney = document.getElementById('statusMoney');
+            const statusSelectMoney = document.getElementById('statusSelectMoney');
+
+            if (statusMoney.style.display !== 'none') {
+                // Показываем выпадающий список и скрываем текст
+                statusMoney.style.display = 'none';
+                statusSelectMoney.style.display = 'inline-block';
+                this.textContent = 'Сохранить';
+            } else {
+                // Сохраняем изменения, скрываем список и показываем текст
+                statusMoney.style.display = 'inline';
+                statusMoney.textContent = statusSelectMoney.options[statusSelectMoney.selectedIndex].text;
+                statusSelectMoney.style.display = 'none';
+                this.textContent = 'Изменить';
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

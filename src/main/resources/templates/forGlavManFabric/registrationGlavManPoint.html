@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документооборот</title>
+    <link rel="stylesheet" href="/frontend/for_fabricManager/for_point.css" />
+    <style>
+        .form-group input,
+        select {
+            height: 20px;
+            width: 480px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cccccccc;
+            /* padding-left: 10px; */
+            border-radius: 25px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.651);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group select {
+            height: 45px;
+            padding: 0;
+            padding-left: 10px;
+            width: 500px;
+            appearance: none;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: rgb(0, 0, 0);
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="nav-and-search">
+                <h1>г. Уфа Торговый центр "Парус"</h1>
+            </div>
+            <div class="icons">
+                <a href="#user"> <img height="35px" th:src="@{img/header/user.png}"></a>
+            </div>
+
+        </header>
+        <div class="container">
+            <div class="sidebar">
+                <a>Заказы</a>
+                <a>Товары на складе</a>  
+                <a>Отчетность</a>  
+                <a>Каталог</a>  
+                <a>Регистрация менеджера<br> фабрики</a>  
+                <a>Регистрация главного<br> менеджера магазина</a>
+                <a>Магазины</a> 
+                <div class="logo-container">
+                    <img height="150px" th:src="@{img/body/forLoginRegistration/germes.png}" alt="">
+                </div>
+            </div>
+            <div class="client">
+                <div class="form_client">
+                    <h2>Регистрация главного менеджера магазина</h2>
+                    <form action="/login" method="POST" style="
+                    margin-top: 50px;">
+                        <div class="form-group">
+                            <label for="username">Номер телефона:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Фамилия:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Имя:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pickup-point">Магазин:</label>
+                            <select id="pickup-point" name="pickup-point" required>
+                                <option value="">-- Выберите магазин --</option>
+                                <option value="point1" data-address="г.Уфа, ул. Трамвайная, д. 2/3 , ТЦ Парус"
+                                    data-phone="+7 (123) 456-78-90" data-coords="54.796646, 56.074726">ул. Центральная,
+                                    д. 1 (склад)</option>
+                                <option value="point2" data-address="ул. Торговая, д. 15"
+                                    data-phone="+7 (123) 456-78-91" data-coords="55.761244,37.628423">ул. Торговая, д.
+                                    15 (магазин)</option>
+                                <option value="point3" data-address="ул. Промышленная, д. 8"
+                                    data-phone="+7 (123) 456-78-92" data-coords="55.771244,37.638423">ул. Промышленная,
+                                    д. 8 (терминал)</option>
+                                <option value="point4" data-address="ул. Центральная, д. 1"
+                                    data-phone="+7 (123) 456-78-90" data-coords="55.751244,37.618423">ул. Центральная,
+                                    д. 1 (склад)</option>
+                                <option value="point5" data-address="ул. Торговая, д. 15"
+                                    data-phone="+7 (123) 456-78-91" data-coords="55.761244,37.628423">ул. Торговая, д.
+                                    15 (магазин)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Пароль:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit">Зарегестрировать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

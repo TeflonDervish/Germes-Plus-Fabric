@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документооборот</title>
+    <link rel="stylesheet" href="/frontend/for_fabricManager/for_point.css">
+    <style>
+        button #otchet{
+            width: 500px;
+        }
+
+        
+       
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <header>    
+        <div class="nav-and-search">
+            <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a href="#user"> <img height="35px" th:src="@{img/header/user.png}"></a>
+        </div>
+
+    </header>
+    <div class="container">
+        <div class="sidebar">
+                <a>Заказы</a>
+                <a>Товары на складе</a>  
+                <a>Отчетность</a>  
+                <a>Каталог</a>  
+                <a>Регистрация менеджера<br> фабрики</a>  
+                <a>Регистрация главного<br> менеджера магазина</a>
+                <a>Магазины</a>  
+                <div class="logo-container">
+                    <img height="150px" th:src="@{img/body/forLoginRegistration/germes.png}" alt="">
+                </div>
+        </div>
+        
+        <div class="main-content">
+            <header class="header_for_point">
+                <div class="nav-and-search" style="display: flex;flex-direction: row;">
+                    <!-- TODO для админа и обычного разные -->
+                     <!-- TODO для юр лиц -->
+                    <button>+ Добавить магазин</button> 
+                </div>
+
+                <div class="search-container">
+                    <input type="text" placeholder="Поиск...">
+                </div>
+        
+            </header>
+            <table class="documents-table">
+                <thead>
+                    <tr>
+                        <th>Идентификатор
+                        </th>
+                        <th>Наименование
+                        </th>
+                        <th>Главный менеджер</th>
+                        <th>Город</th>
+                        <th>Адрес</th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="status status-active">Активен</span></td>
+                        <td class="document-name">Договор №1245 от 15.03.2025</td>
+                        <td class="document-date">26.03.2025 14:30</td>
+                        <td>Договор</td>
+                        <td>ООО "ТехноПром"</td>
+
+                       
+                        
+                    </tr>
+                    <tr>
+                        <td><span class="status">Черновик</span></td>
+                        <td>Акт</td>
+                        <td>ИП Смирнов А.А.</td>
+                        <td class="document-name">Акт выполненных работ №45</td>
+                        <td class="document-date">25.03.2025 10:15</td>
+                        
+                        
+                    </tr>
+                    <tr>
+                        <td><span class="status status-active">Активен</span></td>
+                        <td>Счет</td>
+                        <td>ООО "СтройГарант"</td>
+                        <td class="document-name">Счет на оплату №678</td>
+                        <td class="document-date">24.03.2025 16:45</td>
+                       
+                        
+                    </tr>
+                </tbody>
+            </table>
+        
+           
+        </div>
+    </div>
+</div>
+
+<script>
+    // Простая реализация фильтрации
+    document.querySelectorAll('.filter-dropdown button').forEach(button => {
+        button.addEventListener('click', function() {
+            const columnIndex = this.closest('th').cellIndex;
+            const select = this.previousElementSibling;
+            const filterValue = select.value;
+            const table = this.closest('table');
+            
+            table.querySelectorAll('tbody tr').forEach(row => {
+                const cell = row.cells[columnIndex];
+                const cellValue = cell.textContent.trim().toLowerCase();
+                
+                if (filterValue === "" || cellValue.includes(filterValue.toLowerCase())) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>

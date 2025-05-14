@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документооборот</title>
+    <link rel="stylesheet" href="for_point.css"/>
+
+
+    <style>
+        .container_zakaz {
+            max-width: 100%;
+            width: 80%;
+            background: #f9f9f9;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-section {
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .form-group select{
+            height: 45px;
+            width: 500px;
+            padding: 10px 20px;
+            margin-top: 5px;
+            border: 1px solid #cccccccc;
+            /* padding-left: 10px; */
+            border-radius: 25px;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.651);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            appearance: none;
+        }
+        
+        .product-list input[type="number"]{
+            width: 100px;
+            border-radius: 25px;
+            height: 45px;
+            font-size: 18px;
+            border: 1px solid #cccccccc;
+            background: rgba(255, 255, 255, 0.651);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            appearance: none;
+            text-align: center;
+            
+        }
+        .form-group:last-child {
+            margin-right: 0;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"], 
+        input[type="date"], 
+        select,
+        textarea {
+            width: 500px;
+            font-size: 16px;
+        } 
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            /* margin-top: 10px; */
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: #ff3434;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: 200px;
+        }
+        .btn:hover {
+            background-color: #aa0000;
+        }
+        .btn-secondary {
+            background-color: #95a5a600;
+            color: white;
+            font-size: 18px;
+            height: 100%;
+            border: none;
+        }
+        .btn-secondary:hover {
+            color: #ccc;
+        }
+        .btn-danger {
+            background-color: #e74c3c;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        .btn-add {
+            margin-bottom: 15px;
+        }
+        .delivery-options {
+            display: flex;
+            margin-bottom: 15px;
+            gap: 45px;
+        }
+        .delivery-option {
+            margin-right: 20px;
+        }
+        .total-summary {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 15px;
+            background-color: #eaf2f8;
+            border-radius: 4px;
+        }
+        .hidden {
+            display: none;
+        }
+            h1{
+        padding-left: 20px;
+    }
+        .actions {
+            padding-left: 20px;
+            /* text-align: right; */
+        }
+        .actions button{
+            margin-right: 20px;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            padding: 10px;
+            color: #ffffff;
+            background-color: #283150;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-size: 18px;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+        .product-list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .product-list th, .product-list td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .product-list td {
+            /* padding-top: 60px; */
+            font-size: 18px;
+        }
+        .product-list p{
+            font-size: 18px;
+        }
+        .product-list th {
+            background-color: #333a55a9;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        .product-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .total-summary {
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .total-summary p{
+            font-size: 19px;
+        }
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .download-link:hover {
+            background-color: #2980b9;
+        }
+        .seller-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            padding-left: 20px ;
+            font-size: 25px;
+            border-top: 1px solid #eee;
+            
+        }
+        #sellerName{
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .prodavets{
+            font-size: 18px;
+        }
+        .magaz{
+            font-size: 18px;
+        }
+        label{
+            font-size: 18px;
+        }
+
+        .lift-details {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+  }
+
+  .checkboxForm{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.checkboxForm label{
+    font-size: 18px;
+}
+.checkboxForm input[type="checkbox"] {
+    
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .checkboxForm input[type="checkbox"]:hover {
+    border-color: #226aa5;
+    box-shadow: 0 0 8px rgba(13, 56, 92, 0.5);
+  }
+  
+  .checkboxForm input[type="checkbox"]:checked {
+    background-color: #3c96e0be;
+    border-color: #266ba370;
+  }
+
+  .checkboxForm input[type="radio"] {
+    
+    appearance: none;
+    width: 18px;
+    padding: 10px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .checkboxForm input[type="radio"]:hover {
+    border-color: #226aa5;
+    box-shadow: 0 0 8px rgba(13, 56, 92, 0.5);
+  }
+  
+  .checkboxForm input[type="radio"]:checked {
+    background-color: #3c96e0be;
+    border-color: #266ba370;
+  }
+  .form-group #elevator{
+    width: 522px;
+  }
+  #orderStatus{
+    height: 100%;
+            width: 100%;
+            padding: 10px 20px;
+            margin-top: 5px;
+            border: 1px solid #cccccccc;
+            /* padding-left: 10px; */
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.651);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            appearance: none;
+            border: none;
+  }
+
+  .product-list {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-list th, 
+.product-list td {
+    text-align: center; /* Горизонтальное выравнивание по центру */
+    vertical-align: middle; /* Вертикальное выравнивание по центру */
+    padding: 10px 5px; /* Добавим отступы для лучшего вида */
+}
+
+.product-list select, 
+.product-list input[type="number"] {
+    margin: 0 auto; /* Центрируем select и input */
+    display: block; /* Чтобы margin: auto работал */
+}
+
+.product-list button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0 auto; /* Центрируем кнопку */
+    display: block; /* Чтобы margin: auto работал */
+}
+
+    </style>
+
+</head>
+<body>
+
+    <div class="wrapper">
+    <header>    
+        <div class="nav-and-search">
+            <h1>г. Уфа Торговый центр "Парус"</h1>
+        </div>
+        <div class="icons">
+            <a href="#user"> <img height="35px" th:src="@{img/header/user.png}"></a>
+        </div>
+
+    </header>
+    <div class="container">
+        <div class="sidebar">
+                <a>Заказы</a>
+                <a>Товары на складе</a>  
+                <a>Отчетность</a>
+                <a>Каталог</a> 
+
+                <div class="logo-container">
+                    <img height="150px" th:src="@{img/body/forLoginRegistration/germes.png}" alt="">
+                </div>
+        </div>
+        <div class="container_zakaz">
+            <h1>Oтчет №</h1>
+        
+        <form id="orderForm">            
+            <div class="form-section">
+                <div class="section-title" style="display: flex; flex-direction: row; justify-content: space-between;"><span>Данные отчета</span> <button class=" btn-secondary">Скачать отчет</button></div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customerName">Наименование</label>
+                        <input type="text" id="customerName" name="customerName" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerName">От</label>
+                        <input type="date" id="customerName" name="customerName" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">До</label>
+                        <input type="date" id="customerPhone" name="customerPhone" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea">Описание</label>
+                        <textarea id="textarea" name="customerPhone" disabled></textarea>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="submit" class="btn">Удалить отчет</button>
+                </div>
+                <table class="documents-table">
+                    <thead>
+                        <tr>
+                            <th>Наименование
+                            </th>
+                            <th>Общий габарит</th>
+                            <th>Стоимость</th>
+                            <th>Количество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="status status-active">Активен</span></td>
+                            <td class="document-name">Договор №1245 от 15.03.2025</td>
+                            <td class="document-date">26.03.2025 14:30</td>
+                            <td>Договор</td>
+
+
+                        </tr>
+                        <tr>
+                            <td><span class="status">Черновик</span></td>
+                            <td>Акт</td>
+                            <td>ИП Смирнов А.А.</td>
+                            <td class="document-name">Акт выполненных работ №45</td>
+                            
+
+                        </tr>
+                        <tr>
+                            <td><span class="status status-active">Активен</span></td>
+                            <td>Счет</td>
+                            <td>ООО "СтройГарант"</td>
+                            <td class="document-name">Счет на оплату №678</td>
+                            
+
+                        </tr>
+                    </tbody>
+                </table>  
+            </div>
+            
+            
+            
+
+        </form>
+       
+    </div>
+
+</div>
+
+</body>
+</html>

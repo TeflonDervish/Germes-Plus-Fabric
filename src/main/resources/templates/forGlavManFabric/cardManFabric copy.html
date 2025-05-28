@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документооборот</title>
-    <link rel="stylesheet" href="/frontend/for_fabricManager/for_point.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/style/for_point.css" />
     <style>
         .form-group input,
         select {
@@ -36,6 +36,19 @@
             color: rgb(0, 0, 0);
             font-weight: 400;
         }
+
+        .form_client button.delete {
+            background-color: rgb(245, 0, 0);
+        }
+
+
+        .login-form button.delete:hover,
+        .form_client button.delete:hover {
+            background: white;
+            color:rgb(245, 0, 0);
+            border: 3px solid rgb(245, 0, 0);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
@@ -64,7 +77,7 @@
             </div>
             <div class="client">
                 <div class="form_client">
-                    <h2>Регистрация главного менеджера магазина</h2>
+                    <h2></h2>
                     <form action="/login" method="POST" style="
                     margin-top: 50px;">
                         <div class="form-group">
@@ -80,31 +93,11 @@
                             <input type="text" id="username" name="username" required>
                         </div>
                         <div class="form-group">
-                            <label for="pickup-point">Магазин:</label>
-                            <select id="pickup-point" name="pickup-point" required>
-                                <option value="">-- Выберите магазин --</option>
-                                <option value="point1" data-address="г.Уфа, ул. Трамвайная, д. 2/3 , ТЦ Парус"
-                                    data-phone="+7 (123) 456-78-90" data-coords="54.796646, 56.074726">ул. Центральная,
-                                    д. 1 (склад)</option>
-                                <option value="point2" data-address="ул. Торговая, д. 15"
-                                    data-phone="+7 (123) 456-78-91" data-coords="55.761244,37.628423">ул. Торговая, д.
-                                    15 (магазин)</option>
-                                <option value="point3" data-address="ул. Промышленная, д. 8"
-                                    data-phone="+7 (123) 456-78-92" data-coords="55.771244,37.638423">ул. Промышленная,
-                                    д. 8 (терминал)</option>
-                                <option value="point4" data-address="ул. Центральная, д. 1"
-                                    data-phone="+7 (123) 456-78-90" data-coords="55.751244,37.618423">ул. Центральная,
-                                    д. 1 (склад)</option>
-                                <option value="point5" data-address="ул. Торговая, д. 15"
-                                    data-phone="+7 (123) 456-78-91" data-coords="55.761244,37.628423">ул. Торговая, д.
-                                    15 (магазин)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
                             <label for="password">Пароль:</label>
                             <input type="password" id="password" name="password" required>
                         </div>
-                        <button type="submit">Зарегестрировать</button>
+                        <button type="submit">Сохранить</button>
+                        <button class="delete">Удалить</button>
                     </form>
                 </div>
             </div>

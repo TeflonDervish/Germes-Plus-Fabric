@@ -5,43 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документооборот</title>
-    <link rel="stylesheet" href="/for_fabricManager/for_point.css" />
+    <link rel="stylesheet" href="/src/main/resources/static/style/for_point.css" />
     <style>
-        #orderStatus {
-
-            width: 350px;
-            padding: 3px 20px;
-            border-radius: 10px;
-            border: 2px solid #ffffff;
-            /* padding-left: 10px; */
-            font-size: 18px;
-            color: white;
-            background: rgba(255, 255, 255, 0);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            appearance: none;
+        button #otchet {
+            width: 500px;
         }
 
-        #orderStatus option {
-            color: black;
+        .nav-and-search {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding-left: 20px;
+            gap: 20px;
+            width: 100%;
         }
 
-        input[type="number"] {
-            width: 40px;
-            padding: 3px 20px;
-            border-radius: 10px;
-            border: 2px solid #ffffff;
-            /* padding-left: 10px; */
-            font-size: 18px;
-            color: white;
-            background: rgba(255, 255, 255, 0);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
+        .nav-and-search button{
+            width: auto;
         }
-
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .delete {
+            background: rgb(245, 0, 0);
+        }
+        .delete :hover{
+            background: white;
         }
     </style>
 </head>
@@ -72,8 +58,9 @@
 
             <div class="main-content">
                 <header class="header_for_point">
-                    <div class="nav-and-search" style="display: flex;flex-direction: row;">
-                        <button>+ Добавить товар</button>
+                    <div class="nav-and-search">
+                        <button>Регистрация менеджера магазина</button>
+                        <button>Регистрация менеджера фабрики</button>
                     </div>
 
                     <div class="search-container">
@@ -85,14 +72,26 @@
                     <thead>
                         <tr>
                             <th>
-                                <span> Артикул</span>
+                                <span>Ф.И. сотрудника</span>
                             </th>
-                            <th>Наименование
+                            <th>Должность
                             </th>
-                            <th>Основа</th>
-                            <th>Наполнение</th>
-                            <th>Общий габарит</th>
-                            <th>Стоимость</th>
+                            <th>Почта</th>
+                            <th class="filter-header">
+                                <span>Номер телефона</span>
+                            </th>
+                            <th class="filter-header">
+                                <span class="filter-icon">Предприятие</span>
+                                <div class="filter-dropdown">
+                                    <select>
+                                        <option value="">Все направления</option>
+                                        <option value="incoming">Входящий</option>
+                                        <option value="outgoing">Исходящий</option>
+                                        <option value="internal">Внутренний</option>
+                                    </select>
+                                    <button>Применить</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,9 +100,9 @@
                             <td class="document-name">Договор №1245 от 15.03.2025</td>
                             <td class="document-date">26.03.2025 14:30</td>
                             <td>Договор</td>
-                            <td>Договор</td>
-                            <td>Договор</td>
+                            <td>ООО "ТехноПром"</td>
 
+                            <td>Входящий</td>
 
                         </tr>
                         <tr>
@@ -112,6 +111,7 @@
                             <td>ИП Смирнов А.А.</td>
                             <td class="document-name">Акт выполненных работ №45</td>
                             <td class="document-date">25.03.2025 10:15</td>
+                            <td>Исходящий</td>
 
                         </tr>
                         <tr>
@@ -120,6 +120,7 @@
                             <td>ООО "СтройГарант"</td>
                             <td class="document-name">Счет на оплату №678</td>
                             <td class="document-date">24.03.2025 16:45</td>
+                            <td>Внутренний</td>
 
                         </tr>
                     </tbody>

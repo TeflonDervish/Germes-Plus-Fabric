@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Документооборот</title>
+    <title>Каталог</title>
     <link rel="stylesheet" th:href="@{/style/for_point.css}" />
     <style>
         #orderStatus {
@@ -72,6 +72,8 @@
                 <a th:href="@{/sclad}">Товары на складе</a>
                 <a th:href="@{/otchet}">Отчетность</a>
                 <a th:href="@{/catalog}">Каталог</a>
+                <a th:href="@{/employee}">Сотрудники</a>
+                <a th:href="@{/point}">Магазины</a>
                 <div class="logo-container">
                     <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
                 </div>
@@ -82,6 +84,8 @@
                 <a th:href="@{/sclad}">Товары на складе</a>
                 <a th:href="@{/otchet}">Отчетность</a>
                 <a th:href="@{/catalog}">Каталог</a>
+                <a th:href="@{/employee}">Сотрудники</a>
+                <a th:href="@{/point}">Магазины</a>
                 <div class="logo-container">
                     <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
                 </div>
@@ -90,37 +94,40 @@
             <div class="main-content">
                 <header class="header_for_point">
                     <div class="nav-and-search" style="display: flex;flex-direction: row;">
-                        <!-- TODO для админа и обычного разные -->
-                         <!-- TODO для юр лиц -->
-                        <button>+ Добавить товар</button> 
+                        <form th:action="@{/catalog/create}">
+                            <button type="submit">+ Добавить товар</button>
+                        </form>
                     </div>
 
                     <div class="search-container">
-                        <input type="text" placeholder="Поиск...">
+                        <form th:action="@{/catalog/search}" method="post">
+                            <input type="text" name="query" placeholder="Поиск...">
+                        </form>
                     </div>
 
                 </header>
                 <table class="documents-table">
                     <thead>
-                        <tr>
-                            <th>
-                                <span> Артикул</span>
-                            </th>
-                            <th>Наименование</th>
-                            <th>Основа</th>
-                            <th>Наполнение</th>
-                            <th>Общий габарит</th>
-                            <th>Стоимость</th>
-                        </tr>
+                    <tr>
+                        <th>
+                            <span> Артикул</span>
+                        </th>
+                        <th>Наименование</th>
+                        <th>Основа</th>
+                        <th>Наполнение</th>
+                        <th>Общий габарит</th>
+                        <th>Стоимость</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="product : ${products}">
-                            <td><a th:text="${product.article}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.name}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.filling}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.size}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.price}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                        </tr>
+                    <tr th:each="product : ${products}">
+                        <td><a th:text="${product.article}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                        <td><a th:text="${product.name}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                        <td><a th:text="${product.basis}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                        <td><a th:text="${product.filling}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                        <td><a th:text="${product.size}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                        <td><a th:text="${product.price}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Документооборот</title>
+    <title>Склад</title>
     <link rel="stylesheet" th:href="@{/style/for_point.css}" />
     <style>
         #orderStatus {
@@ -72,6 +72,8 @@
                 <a th:href="@{/sclad}">Товары на складе</a>
                 <a th:href="@{/otchet}">Отчетность</a>
                 <a th:href="@{/catalog}">Каталог</a>
+                <a th:href="@{/employee}">Сотрудники</a>
+                <a th:href="@{/point}">Магазины</a>
                 <div class="logo-container">
                     <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
                 </div>
@@ -82,6 +84,8 @@
                 <a th:href="@{/sclad}">Товары на складе</a>
                 <a th:href="@{/otchet}">Отчетность</a>
                 <a th:href="@{/catalog}">Каталог</a>
+                <a th:href="@{/employee}">Сотрудники</a>
+                <a th:href="@{/point}">Магазины</a>
                 <div class="logo-container">
                     <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
                 </div>
@@ -89,40 +93,45 @@
 
             <div class="main-content">
                 <header class="header_for_point">
-                    <div class="nav-and-search" style="display: flex;flex-direction: row;">
-                        <!-- TODO для админа и обычного разные -->
-                         <!-- TODO для юр лиц -->
-                        <button>+ Добавить товар</button> 
-                    </div>
+                    <form th:action="@{/sclad/add}" method="post">
+                        <div class="nav-and-search" style="display: flex;flex-direction: row;">
+                            <select id="orderStatus" name="productId">
+                                <option th:each="product : ${products}"
+                                        th:value="${product.id}"
+                                        th:text="${product.name}">Диван</option>
+                            </select>
+                            <input type="number" name="count" min="1" value="1">
+                            <button>+ Добавить товар</button>
+                        </div>
+                    </form>
 
                     <div class="search-container">
-                        <input type="text" placeholder="Поиск...">
+                        <form th:action="@{/sclad/search}" method="post">
+                            <input type="text" name="query" placeholder="Поиск...">
+                        </form>
                     </div>
 
                 </header>
                 <table class="documents-table">
                     <thead>
                         <tr>
-                            <th>
-                                <span> Артикул</span>
-                            </th>
                             <th>Наименование</th>
-                            <th>Основа</th>
-                            <th>Наполнение</th>
                             <th>Общий габарит</th>
                             <th>Стоимость</th>
+                            <th>Количество</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="product : ${products}">
-                            <td><a th:text="${product.article}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.name}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.filling}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.size}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.price}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                        </tr>
+                    <tr th:each="sclads : ${sclad}">
+                        <td th:text="${sclads.productForIndividual.name}"></td>
+                        <td th:text="${sclads.productForIndividual.size}"></td>
+                        <td th:text="${sclads.productForIndividual.price}"></td>
+                        <td th:text="${sclads.count}"></td>
+                    </tr>
                     </tbody>
                 </table>
+
+
             </div>
         </div>
     </div>

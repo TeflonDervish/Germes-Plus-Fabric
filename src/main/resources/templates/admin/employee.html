@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сотрудники</title>
+    <link rel="stylesheet" th:href="@{/style/for_point.css}"/>
+    <style>
+        button #otchet {
+            width: 500px;
+        }
+
+        .nav-and-search {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            padding-left: 20px;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .nav-and-search button {
+            width: auto;
+        }
+
+        .delete {
+            background: rgb(245, 0, 0);
+        }
+
+        .delete :hover {
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <header class="fixed">
+        <div class="nav-and-search">
+            <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
+
+    </header>
+    <header class="invisible">
+        <div class="nav-and-search">
+            <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
+
+    </header>
+    <div class="container">
+        <div class="sidebar fixed">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <a th:href="@{/employee}">Сотрудники</a>
+            <a th:href="@{/point}">Магазины</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
+            </div>
+        </div>
+
+        <div class="sidebar invisible">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <a th:href="@{/employee}">Сотрудники</a>
+            <a th:href="@{/point}">Магазины</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
+            </div>
+        </div>
+
+        <div class="main-content">
+            <header class="header_for_point">
+                <div class="nav-and-search">
+                    <form th:action="@{/employee/create/point}">
+                        <button>Регистрация менеджера магазина</button>
+                    </form>
+                    <form th:action="@{/employee/create/fabric}">
+                        <button>Регистрация менеджера фабрики</button>
+                    </form>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" placeholder="Поиск...">
+                </div>
+
+            </header>
+            <table class="documents-table">
+                <thead>
+                <tr>
+                    <th>
+                        <span>Ф.И. сотрудника</span>
+                    </th>
+                    <th>Должность
+                    </th>
+                    <th>Почта</th>
+                    <th class="filter-header">
+                        <span>Номер телефона</span>
+                    </th>
+                    <th class="filter-header">
+                        <span class="filter-icon">Предприятие</span>
+                        <div class="filter-dropdown">
+                            <select>
+                                <option value="">Все направления</option>
+                                <option value="incoming">Входящий</option>
+                                <option value="outgoing">Исходящий</option>
+                                <option value="internal">Внутренний</option>
+                            </select>
+                            <button>Применить</button>
+                        </div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="employee : ${fabricManagers}">
+                    <td><a th:text="${employee.surname} + ' ' + ${employee.name}"
+                           th:href="@{/employee/fabric/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.role.roleName}"
+                           th:href="@{/employee/fabric/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.email}"
+                           th:href="@{/employee/fabric/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.phoneNumber}"
+                           th:href="@{/employee/fabric/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.fabric.name}"
+                           th:href="@{/employee/fabric/{id} (id=${employee.id})}"></a></td>
+
+                </tr>
+                </tbody>
+                <tbody>
+                <tr th:each="employee : ${pointManagers}">
+                    <td><a th:text="${employee.surname} + ' ' + ${employee.name}"
+                           th:href="@{/employee/point/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.role.roleName}"
+                           th:href="@{/employee/point/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.email}"
+                           th:href="@{/employee/point/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.phoneNumber}"
+                           th:href="@{/employee/point/{id} (id=${employee.id})}"></a></td>
+                    <td><a th:text="${employee.pointOfSale.name}"
+                           th:href="@{/employee/point/{id} (id=${employee.id})}"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Простая реализация фильтрации
+    document.querySelectorAll('.filter-dropdown button').forEach(button => {
+        button.addEventListener('click', function () {
+            const columnIndex = this.closest('th').cellIndex;
+            const select = this.previousElementSibling;
+            const filterValue = select.value;
+            const table = this.closest('table');
+
+            table.querySelectorAll('tbody tr').forEach(row => {
+                const cell = row.cells[columnIndex];
+                const cellValue = cell.textContent.trim().toLowerCase();
+
+                if (filterValue === "" || cellValue.includes(filterValue.toLowerCase())) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация менеджера фабрики</title>
+    <link rel="stylesheet" th:href="@{/style/for_point.css}" />
+    <style>
+        .form-group input,
+        select {
+            height: 20px;
+            width: 480px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cccccccc;
+            /* padding-left: 10px; */
+            border-radius: 25px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.651);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group select {
+            height: 45px;
+            padding: 0;
+            padding-left: 10px;
+            width: 500px;
+            appearance: none;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: rgb(0, 0, 0);
+            font-weight: 400;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="fixed">
+            <div class="nav-and-search">
+                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+            </div>
+            <div class="icons">
+                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+            </div>
+
+        </header>
+        <header class="invisible">
+            <div class="nav-and-search">
+                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+            </div>
+            <div class="icons">
+                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+            </div>
+
+        </header>
+        <div class="container">
+            <div class="sidebar fixed">
+                <a th:href="@{/order}">Заказы</a>
+                <a th:href="@{/sclad}">Товары на складе</a>
+                <a th:href="@{/otchet}">Отчетность</a>
+                <a th:href="@{/catalog}">Каталог</a>
+                <a th:href="@{/employee}">Сотрудники</a>
+                <a th:href="@{/point}">Магазины</a>
+                <div class="logo-container">
+                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
+                </div>
+            </div>
+
+            <div class="sidebar invisible">
+                <a th:href="@{/order}">Заказы</a>
+                <a th:href="@{/sclad}">Товары на складе</a>
+                <a th:href="@{/otchet}">Отчетность</a>
+                <a th:href="@{/catalog}">Каталог</a>
+                <a th:href="@{/employee}">Сотрудники</a>
+                <a th:href="@{/point}">Магазины</a>
+                <div class="logo-container">
+                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
+                </div>
+            </div>
+            <div class="client">
+                <div class="form_client">
+                    <h2>Регистрация менеджера фабрики</h2>
+                    <form th:action="@{/employee/create/fabric}" method="POST" style="
+                    margin-top: 50px;">
+                        <div class="form-group">
+                            <label for="username">Номер телефона:</label>
+                            <input type="text" id="username" name="phoneNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Фамилия:</label>
+                            <input type="text" id="username" name="surname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Имя:</label>
+                            <input type="text" id="username" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Пароль:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="submit">Зарегестрировать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

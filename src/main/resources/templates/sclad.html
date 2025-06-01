@@ -50,7 +50,7 @@
     <div class="wrapper">
         <header class="fixed">
             <div class="nav-and-search">
-                <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
+                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
             </div>
             <div class="icons">
                 <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
@@ -59,7 +59,7 @@
         </header>
         <header class="invisible">
             <div class="nav-and-search">
-                <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
+                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
             </div>
             <div class="icons">
                 <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
@@ -90,9 +90,15 @@
             <div class="main-content">
                 <header class="header_for_point">
                     <div class="nav-and-search" style="display: flex;flex-direction: row;">
-                        <!-- TODO для админа и обычного разные -->
-                         <!-- TODO для юр лиц -->
-                        <button>+ Добавить товар</button> 
+                        <select id="orderStatus" name="orderStatus">
+                            <option value="new">Диван</option>
+                            <option value="processing">В обработке</option>
+                            <option value="completed">Завершен</option>
+                            <option value="cancelled">Отменен</option>
+                        </select>
+                        <input type="number" min="1" value="1">
+                        <button>+ Добавить товар</button>
+
                     </div>
 
                     <div class="search-container">
@@ -103,26 +109,23 @@
                 <table class="documents-table">
                     <thead>
                         <tr>
-                            <th>
-                                <span> Артикул</span>
-                            </th>
                             <th>Наименование</th>
-                            <th>Основа</th>
-                            <th>Наполнение</th>
                             <th>Общий габарит</th>
                             <th>Стоимость</th>
+                            <th>Количество</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="product : ${products}">
-                            <td><a th:text="${product.article}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.name}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.filling}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.size}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.price}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
+                        <tr th:each="sclads : ${sclad}">
+                            <td th:text="${sclads.productForIndividual.name}"></td>
+                            <td th:text="${sclads.productForIndividual.size}"></td>
+                            <td th:text="${sclads.productForIndividual.price}"></td>
+                            <td th:text="${sclads.count}"></td>
                         </tr>
                     </tbody>
                 </table>
+
+
             </div>
         </div>
     </div>

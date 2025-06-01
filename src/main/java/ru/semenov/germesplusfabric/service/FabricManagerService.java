@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.semenov.germesplusfabric.enums.RoleFabric;
 import ru.semenov.germesplusfabric.model.persons.FabricManager;
@@ -16,6 +17,7 @@ import java.util.List;
 public class FabricManagerService implements UserDetailsService {
 
     private final FabricManagerRepository fabricManagerRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -30,7 +32,7 @@ public class FabricManagerService implements UserDetailsService {
                 .phoneNumber(reg.getPhoneNumber())
                 .fabric(current.getFabric())
                 .role(RoleFabric.USER)
-                .password(reg.getPassword())
+                .password(passwordEncoder.encode(reg.getPassword()))
                 .build();
         return fabricManagerRepository.save(newManger);
     }

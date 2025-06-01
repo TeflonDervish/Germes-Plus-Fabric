@@ -88,7 +88,13 @@
                 <tr th:each="point : ${points}">
                     <td><a th:text="${point.id}" th:href="@{/point/{id} (id=${point.id})}"></a></td>
                     <td><a th:text="${point.name}" th:href="@{/point/{id} (id=${point.id})}"></a></td>
-                    <td><a th:text="${point.pointManager.name}" th:href="@{/point/{id} (id=${point.id})}"></a></td>
+                    <td th:if="${point.pointManager != null}">
+                        <a th:text="${point.pointManager.surname}"
+                           th:href="@{/point/{id}(id=${point.id})}"></a>
+                    </td>
+                    <td th:unless="${point.pointManager != null}">
+                        <a th:text="'Не назначен'"
+                           th:href="@{/point/{id}(id=${point.id})}"></a>
                     <td><a th:text="${point.address}" th:href="@{/point/{id} (id=${point.id})}"></a></td>
                 </tr>
                 </tbody>

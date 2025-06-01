@@ -62,6 +62,15 @@ public class PointController {
         return "admin/point";
     }
 
+    @PostMapping("/create")
+    public String create(
+            @ModelAttribute PointOfSale point
+    ) {
+//        pointOfSalealeService.crea
+        pointOfSaleService.createPoint(point);
+        return "redirect:/point";
+    }
+
     @PostMapping("/search")
     public String search(
             @RequestParam String query,
@@ -73,6 +82,15 @@ public class PointController {
 
         return "admin/points";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteById(
+            @PathVariable Long id
+    ) {
+        pointOfSaleService.deleteById(id);
+        return "redirect:/point";
+    }
+
 
 
 }

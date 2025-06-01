@@ -100,7 +100,7 @@
             <div class="client">
                 <div class="form_client">
                     <h2></h2>
-                    <form action="/login" method="POST" style="
+                    <form th:action="/login" method="POST" style="
                     margin-top: 50px;">
                         <div class="form-group">
                             <label for="username">Номер телефона:</label>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="form-group">
                             <label for="pickup-point">Магазин:</label>
-                            <select id="pickup-point" name="pickup-point" required>
+                            <select id="pickup-point" name="pickup-point" required >
                                 <option value="">-- Выберите магазин --</option>
                                 <option value="point1" data-address="г.Уфа, ул. Трамвайная, д. 2/3 , ТЦ Парус"
                                     data-phone="+7 (123) 456-78-90" data-coords="54.796646, 56.074726">ул. Центральная,
@@ -140,6 +140,8 @@
                             <input type="password" id="password" name="password" required>
                         </div>
                         <button type="submit">Сохранить</button>
+                    </form>
+                    <form th:action="@{/employee/delete/{id} (id=${})}">
                         <button class="delete">Удалить</button>
                     </form>
                 </div>

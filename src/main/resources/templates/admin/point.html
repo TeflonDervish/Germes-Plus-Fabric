@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Магазин</title>
-    <link rel="stylesheet" th:href="@{/style/for_point.css}" />
+    <link rel="stylesheet" th:href="@{/style/for_point.css}"/>
 
     <style>
         .form-group {
@@ -22,8 +22,7 @@
             margin-top: 20px;
             margin-bottom: 20px;
             padding: 10px 20px;
-            background-color: #3498db;
-            ;
+            background-color: #3498db;;
             color: white;
             border: none;
             cursor: pointer;
@@ -53,140 +52,136 @@
 </head>
 
 <body>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=bff7b351-d1e8-45d3-a920-587566731f5e&lang=ru_RU"></script>
-    <div class="wrapper">
-        <header class="fixed">
-            <div class="nav-and-search">
-                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=bff7b351-d1e8-45d3-a920-587566731f5e&lang=ru_RU"></script>
+<div class="wrapper">
+    <header class="fixed">
+        <div class="nav-and-search">
+            <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <header class="invisible">
-            <div class="nav-and-search">
-                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+    </header>
+    <header class="invisible">
+        <div class="nav-and-search">
+            <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <div class="container">
-            <div class="sidebar fixed">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <a th:href="@{/employee}">Сотрудники</a>
-                <a th:href="@{/point}">Магазины</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
+    </header>
+    <div class="container">
+        <div class="sidebar fixed">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <a th:href="@{/employee}">Сотрудники</a>
+            <a th:href="@{/point}">Магазины</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
             </div>
+        </div>
 
-            <div class="sidebar invisible">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <a th:href="@{/employee}">Сотрудники</a>
-                <a th:href="@{/point}">Магазины</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
+        <div class="sidebar invisible">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <a th:href="@{/employee}">Сотрудники</a>
+            <a th:href="@{/point}">Магазины</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
             </div>
-
-            <div class="center flex_center">
-                <div class="contact-info">
-                    <h1>Магазин "Гермес-Плюс"</h1>
-
+        </div>
+        <div class="center flex_center">
+            <div class="contact-info">
+                <form th:action="@{/point/create}" method="post">
+                    <h1 th:text="${point.name}"></h1>
+                    <input type="hidden" name="id" th:value="${point.id}">
                     <div class="form-group">
                         <label for="password">Наименование:</label>
-                        <input id="password" name="password" required th:value="${point.name}">
+                        <input id="name" name="name" required th:value="${point.name}">
                     </div>
                     <div class="form-group">
                         <label for="password">Адрес:</label>
-                        <input id="password" name="password" required th:value="${point.address}">
+                        <input id="password" name="address" required th:value="${point.address}">
                     </div>
                     <div class="form-group">
                         <label for="password">Телефон:</label>
-                        <input id="password" name="password" required th:value="${point.phoneNumber}">
+                        <input id="password" name="phoneNumber" required th:value="${point.phoneNumber}">
                     </div>
                     <div class="form-group">
                         <label for="password">E-mail:</label>
-                        <input id="password" name="password" required th:value="${point.email}">
+                        <input type="email" id="password" name="email" required th:value="${point.email}">
                     </div>
                     <div class="form-group">
                         <label for="password">Координаты:</label>
-                        <input id="password" name="password" required th:value="${point.pointOnTheMap}">
+                        <input id="password" name="pointOnTheMap" required th:value="${point.pointOnTheMap}">
                     </div>
-                    <div class="form-group">
-                        <label for="password">Координаты:</label>
-                        <input id="password" name="password" required th:value="${point.pointManager.name}">
-                    </div>
-                    <div style="display: flex; gap: 20px;"> 
-                        <button class="btn" type="file">Сохранить</button>
-                        <button class="btn btn-secondary">Удалить</button>
-                    </div>
-
-
+                    <button class="btn" type="submit">Сохранить</button>
+                </form>
+                <div style="display: flex; gap: 20px;">
+                    <form th:action="@{/point/delete/{id} (id=${point.id})}">
+                        <button type="submit" class="btn btn-secondary">Удалить</button>
+                    </form>
                 </div>
-
-<!--                <div class="reviews center">-->
-<!--                    <h2>Отзывы</h2>-->
-<!--                    <div class="average-rating">-->
-<!--                        Рейтинг: <span id="averageRating">5</span>/5-->
-<!--                    </div>-->
-
-<!--                    <div class="reviews-list">-->
-<!--                        <div class="review">-->
-<!--                            <div class="review-author">Иван Иванов</div>-->
-<!--                            <div class="review-rating">★★★★★</div>-->
-<!--                            <div class="review-text">Отличный продукт! Всё работает как надо.</div>-->
-<!--                            <div class="review-date">09.02.2025</div>-->
-<!--                        </div>-->
-<!--                        <div class="review">-->
-<!--                            <div class="review-author">Мария Петрова</div>-->
-<!--                            <div class="review-rating">★★★★★</div>-->
-<!--                            <div class="review-text">Очень довольна покупкой. Рекомендую!</div>-->
-<!--                            <div class="review-date">25.02.2025</div>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-<!--                </div>-->
             </div>
 
+            <!--                <div class="reviews center">-->
+            <!--                    <h2>Отзывы</h2>-->
+            <!--                    <div class="average-rating">-->
+            <!--                        Рейтинг: <span id="averageRating">5</span>/5-->
+            <!--                    </div>-->
 
+            <!--                    <div class="reviews-list">-->
+            <!--                        <div class="review">-->
+            <!--                            <div class="review-author">Иван Иванов</div>-->
+            <!--                            <div class="review-rating">★★★★★</div>-->
+            <!--                            <div class="review-text">Отличный продукт! Всё работает как надо.</div>-->
+            <!--                            <div class="review-date">09.02.2025</div>-->
+            <!--                        </div>-->
+            <!--                        <div class="review">-->
+            <!--                            <div class="review-author">Мария Петрова</div>-->
+            <!--                            <div class="review-rating">★★★★★</div>-->
+            <!--                            <div class="review-text">Очень довольна покупкой. Рекомендую!</div>-->
+            <!--                            <div class="review-date">25.02.2025</div>-->
+            <!--                        </div>-->
+
+            <!--                    </div>-->
+            <!--                </div>-->
         </div>
+
     </div>
+</div>
 
-    <script type="text/javascript">
-        ymaps.ready(init);
+<script type="text/javascript">
+    ymaps.ready(init);
 
-        function init() {
-            // Получаем данные из скрытых элементов
-            const coordsText = document.getElementById('shop-coordinates').textContent;
-            const [latitude, longitude] = coordsText.split(',').map(Number);
-            const shopName = document.getElementById('shop-name').textContent;
-            const shopAddress = document.getElementById('shop-address').textContent;
+    function init() {
+        // Получаем данные из скрытых элементов
+        const coordsText = document.getElementById('shop-coordinates').textContent;
+        const [latitude, longitude] = coordsText.split(',').map(Number);
+        const shopName = document.getElementById('shop-name').textContent;
+        const shopAddress = document.getElementById('shop-address').textContent;
 
-            // Создаем карту
-            var myMap = new ymaps.Map("map", {
-                center: [latitude, longitude],
-                zoom: 15
-            });
+        // Создаем карту
+        var myMap = new ymaps.Map("map", {
+            center: [latitude, longitude],
+            zoom: 15
+        });
 
-            // Добавляем метку
-            var myPlacemark = new ymaps.Placemark([latitude, longitude], {
-                hintContent: shopName,
-                balloonContent: shopAddress
-            });
+        // Добавляем метку
+        var myPlacemark = new ymaps.Placemark([latitude, longitude], {
+            hintContent: shopName,
+            balloonContent: shopAddress
+        });
 
-            myMap.geoObjects.add(myPlacemark);
-        }
-    </script>
+        myMap.geoObjects.add(myPlacemark);
+    }
+</script>
 
 
 </body>

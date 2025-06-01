@@ -86,19 +86,19 @@
             <div class="client">
                 <div class="form_client">
                     <h2>Регистрация менеджера фабрики</h2>
-                    <form action="/login" method="POST" style="
+                    <form th:action="@{/employee/create/fabric}" method="POST" style="
                     margin-top: 50px;">
                         <div class="form-group">
                             <label for="username">Номер телефона:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="phoneNumber" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Фамилия:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="surname" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Имя:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Пароль:</label>

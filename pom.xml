@@ -10,7 +10,7 @@
     </parent>
     <groupId>ru.semenov</groupId>
     <artifactId>Germes-Plus-Fabric</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Germes-Plus-Fabric</name>
     <description>Germes-Plus-Fabric</description>
     <url/>

@@ -222,7 +222,7 @@ nav {
     display: flex;
     /* align-items: center; */
     gap: 10px; /* Расстояние между полем ввода и кнопкой */
-    width: 400px;
+    width: 100%;
     padding-right: 20px;
     justify-content: flex-end;
 }

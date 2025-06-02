@@ -7,6 +7,8 @@
     <title>Магазин</title>
     <link rel="stylesheet" th:href="@{/style/for_point.css}"/>
 
+    <link rel="stylesheet" th:href="@{/style/for_admin.css}"/>
+
     <style>
         .form-group {
             margin: 0;
@@ -20,7 +22,7 @@
 
         .btn {
             margin-top: 20px;
-            margin-bottom: 20px;
+
             padding: 10px 20px;
             background-color: #3498db;;
             color: white;
@@ -29,7 +31,7 @@
             border-radius: 25px;
             font-size: 18px;
             transition: background-color 0.3s;
-            width: 230px;
+            width: 100%;
             margin-right: 20px;
         }
 
@@ -124,7 +126,8 @@
                     <button class="btn" type="submit">Сохранить</button>
                 </form>
                 <div style="display: flex; gap: 20px;">
-                    <form th:action="@{/point/delete/{id} (id=${point.id})}">
+                    <form th:action="@{/point/delete/{id} (id=${point.id})}" style="
+    width: 100%;">
                         <button type="submit" class="btn btn-secondary">Удалить</button>
                     </form>
                 </div>

@@ -43,4 +43,6 @@ public class PointOfSale {
     private PointManager pointManager;
 
 
+    private String url;
+
 }

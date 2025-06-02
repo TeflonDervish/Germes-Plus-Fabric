@@ -55,7 +55,7 @@ public class ProductForIndividual {
 
     @Column(length = 100) // Спальное место
     private String sleepingSpace;
-  
+
     @Column(length = 100) // Глубина
     private String depth;
 

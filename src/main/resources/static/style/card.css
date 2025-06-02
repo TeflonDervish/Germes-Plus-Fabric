@@ -1,0 +1,414 @@
+
+
+
+.cardForSofa {
+    /*position: relative;*/
+    padding-top: 100px;
+    padding-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+    justify-content: start;
+    align-content: center;
+    column-gap: 20px;
+    row-gap: 30px;
+    /*gap: 25px 150px;*/
+}
+
+
+.cardForSofa #nameSofa {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.articul-rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 35px;
+}
+
+.articul #articul {
+    font-size: 16px;
+    color: #000000a8;
+}
+
+
+.gallery {
+    padding: 20px;
+    /*position: relative;*/
+    /*max-width: 950px;*/
+    /*width: 100%;*/
+    /* margin: 0 auto; */
+    /*overflow: hidden;*/
+    grid-column: 1/2;
+}
+
+.gallery-images {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    transition: transform 0.5s ease-in-out;
+    margin-bottom: 40px;
+}
+
+.gallery-images img {
+
+    width: 500px;
+    height: 400px;
+    display: none;
+}
+
+.gallery-images img.active {
+    display: block;
+}
+
+.tab-pane {
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: none;
+    line-height: 1.5;
+    text-indent: 2em;
+}
+
+.gallery-button {
+    position: absolute;
+    top:50%;
+    z-index: 1019209120;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.281);
+    border-color: #0d504200;
+    width: 70px;
+    height: 70px;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 40px;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    opacity: 0; /* Кнопки скрыты по умолчанию */
+}
+
+.gallery-button:hover {
+    background-color: rgba(0, 0, 0, 0.589);
+}
+
+.gallery:hover .gallery-button {
+    opacity: 1; /* Кнопки появляются при наведении на галерею */
+}
+
+.prev-button {
+
+    left: 5px;
+}
+
+.next-button {
+    right: 5px;
+}
+
+.bodyPage {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bodyPage #character {
+    padding-top: 15px;
+    font-size: 25px;
+    font-weight: 300;
+    color: #000000ef;
+}
+
+.form-container {
+    display: grid;
+    grid-template-column: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.form-container label {
+    font-size: 20px;
+    color: #000000a8;
+}
+
+.aboutForSofa {
+    display: grid;
+    grid-template-columns: 3fr 20px 4fr;
+    gap: 10px;
+}
+
+label.inputs {
+    /*grid-column: 2/3;*/
+    width: auto;
+    color: #000000;
+    font-size: 19px;
+}
+
+.price {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 15px;
+    align-items: center;
+}
+
+.price label {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.price #korzina {
+    padding: 10px;
+    height: 45px;
+    width: 200px;
+    background: #192042af;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease, transform 0.3s ease;
+}
+
+.price #korzina:hover {
+    background: linear-gradient(135deg, #5616a0, #123081);
+    transform: translateY(-2px);
+}
+
+.price #korzina:active {
+    transform: translateY(0);
+}
+
+#korzina:disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+}
+
+#korzina:disabled:hover {
+    background: #cccccc;
+    color: #666666;
+    box-shadow: none;
+}
+
+#korzina:disabled:active {
+    background: #cccccc;
+    color: #666666;
+    box-shadow: none;
+}
+
+.price #heart {
+    padding: 8px;
+    height: 45px;
+    width: 45px;
+    /* margin-top: 10px; */
+    background: #192042af;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease, transform 0.3s ease;
+}
+
+.price #heart:hover {
+    background: linear-gradient(135deg, #5616a0, #123081);
+    transform: translateY(-2px);
+}
+
+.price #heart:active {
+    transform: translateY(0);
+    background: #dd0202;
+}
+
+.price #heart.active {
+    background: #dd0202;
+}
+
+
+.tabs {
+    padding-top: 30px;
+    grid-column: 1/3;
+    width: 100%;
+}
+
+/* Стили для кнопок вкладок */
+.tab-buttons {
+    display: flex;
+    height: 60px;
+    justify-content: space-between;
+    /* box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);  */
+}
+
+.tab-button {
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+    /* border: none; */
+    border-bottom: 2px solid #6e6e6e;
+    /* box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);  */
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: none;
+    font-size: 16px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.tab-button.active {
+    background: #192042af;;
+    color: white;
+}
+
+.tab-button:hover {
+    background: #f0f0f0;
+}
+
+.tab-content {
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+    border-top: none;
+}
+
+
+.tab-pane.active {
+    display: block;
+}
+
+
+/* Основные стили для блока отзывов */
+.reviews {
+    padding-top: 30px;
+    grid-column: 1/3;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.reviews h2 {
+    margin-bottom: 25px;
+    border-bottom: #000000a8;
+}
+
+/* Стили для списка отзывов */
+.reviews-list {
+    margin-bottom: 20px;
+}
+
+.review {
+    padding: 10px;
+    border-bottom: 1px solid #6e6e6e;
+    margin-bottom: 10px;
+
+}
+
+.review:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.review-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+
+.review-text {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.review-photo img {
+    max-width: 25%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.review-date {
+    font-size: 1.2em;
+    color: #777;
+}
+
+/* Стили для формы */
+.review-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-form h3 {
+    margin-bottom: 10px;
+}
+
+.review-form input,
+.review-form textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 1.2em;
+}
+
+.review-form textarea {
+    resize: vertical;
+    min-height: 50px;
+}
+
+
+.review-form button {
+    padding: 10px;
+    height: 90%;
+    width: 250px;
+    background: #192042af;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease, transform 0.3s ease;
+}
+
+.review-form button:hover {
+    background: linear-gradient(135deg, #5616a0, #123081);
+    transform: translateY(-2px);
+}
+
+.review-form button:active {
+    transform: translateY(0);
+}
+
+.average-rating {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.review-rating {
+    color: #ffc107; /* Золотой цвет для звезд */
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.rating .stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+
+}
+
+.rating .star {
+    font-size: 30px;
+    color: #ccc; /* Серый цвет для неактивных звезд */
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.rating .star.active,
+.rating .star:hover {
+    color: #ffc107; /* Золотой цвет для активных звезд */
+}

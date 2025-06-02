@@ -63,6 +63,9 @@ button:hover {
 
 }
 
+.center {    padding-left: calc(50% - 350px);
+    padding-right: calc(50% - 350px);
+}
 
 .login-form label,
 .form_client label {
@@ -75,6 +78,7 @@ button:hover {
 .form-group textarea {
     height: 20px;
     /* width: 480px; */
+    max-width: 1240px;
     padding: 10px;
     margin-top: 5px;
     border: 1px solid #cccccccc;
@@ -210,6 +214,7 @@ header {
     border-radius: 10px;
     border: 2px solid #ffffff; /* Граница поля ввода */
     color: #ffffff;
+    width: auto;
     /*width: 160px;*/
 }
 
@@ -221,8 +226,8 @@ nav {
 .search-container {
     display: flex;
     /* align-items: center; */
-    gap: 10px; /* Расстояние между полем ввода и кнопкой */
-    width: 100%;
+    gap: 10px; /* Расстояние между пfолем ввода и кнопкой */
+
     padding-right: 20px;
     justify-content: flex-end;
 }
@@ -689,10 +694,11 @@ tr:nth-child(even) {
 .flex_center {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 500px;
     align-items: stretch;
-    padding: 40px;
-    margin-left: 40px;
+    /*padding: 40px;*/
+    /*margin-left: 40px;*/
+    margin-top: 40px;
 }
 
 .fixed {
@@ -702,4 +708,9 @@ tr:nth-child(even) {
 
 .invisible {
     visibility: hidden;
+}
+
+.header-order {
+    display: flex;
+    justify-content: flex-end;
 }

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документооборот</title>
+    <link rel="stylesheet" th:href="@{/style/card.css}"/>
     <link rel="stylesheet" th:href="@{/style/for_point.css}"/>
+    <link rel="stylesheet" th:href="@{/style/for_admin.css}"/>
 
     <style>
         button #otchet {
@@ -17,11 +19,11 @@
             font-size: 16px;
         }
 
-        textarea {
+        .custom-textarea {
             min-height: 100px;
             resize: vertical;
             height: 20px;
-            width: 96%;
+            width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #cccccccc;
@@ -70,6 +72,11 @@
         .btn-secondary:hover {
             color: white;
             background-color: #aa0000;
+        }
+
+        .center {
+            padding-left: 50px;
+            padding-right: 50px;
         }
 
     </style>
@@ -127,9 +134,10 @@
                 <div class="gallery">
                     <div class="gallery-images">
                         <img class="active" height="400px" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
+                        <img class="active" height="400px" src="http://image.hermes-plus.ru/api/images/381d5399-cb21-4762-8a3d-7523c8bbb40d_01.jpg" alt="Image 1">
 
-                        <button style="top: 200px;" class="gallery-button prev-button">&lt;</button>
-                        <button style="top: 200px;" class="gallery-button next-button">&gt;</button>
+                        <button style="" class="gallery-button prev-button">&lt;</button>
+                        <button style="" class="gallery-button next-button">&gt;</button>
 
                     </div>
 
@@ -204,7 +212,7 @@
                 <div class="tabs">
                     <div class="form-group">
                         <label for="password">Описание:</label>
-                        <textarea type="password" id="password" name="password" required>
+                        <textarea class="custom-textarea" id="password" name="password" required>
                                 </textarea>
                     </div>
                 </div>
@@ -214,35 +222,36 @@
                 </div>
 
 
-                <div class="reviews center">
-                    <h2>Отзывы</h2>
-                    <div class="average-rating">
-                        Рейтинг: <span id="averageRating">5</span>/5
+
+            </div>
+            <div class="reviews center">
+                <h2>Отзывы</h2>
+                <div class="average-rating">
+                    Рейтинг: <span id="averageRating">5</span>/5
+                </div>
+
+                <div class="reviews-list">
+                    <div class="review">
+                        <div class="review-author">Иван Иванов</div>
+                        <div class="review-rating">★★★★★</div>
+                        <div class="review-text">Отличный продукт! Всё работает как надо.</div>
+                        <div class="review-photo">
+                            <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
+                        </div>
+                        <div class="review-date">09.02.2025</div>
                     </div>
-
-                    <div class="reviews-list">
-                        <div class="review">
-                            <div class="review-author">Иван Иванов</div>
-                            <div class="review-rating">★★★★★</div>
-                            <div class="review-text">Отличный продукт! Всё работает как надо.</div>
-                            <div class="review-photo">
-                                <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
-                            </div>
-                            <div class="review-date">09.02.2025</div>
+                    <div class="review">
+                        <div class="review-author">Мария Петрова</div>
+                        <div class="review-rating">★★★★★</div>
+                        <div class="review-text">Очень довольна покупкой. Рекомендую!</div>
+                        <div class="review-photo">
+                            <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
                         </div>
-                        <div class="review">
-                            <div class="review-author">Мария Петрова</div>
-                            <div class="review-rating">★★★★★</div>
-                            <div class="review-text">Очень довольна покупкой. Рекомендую!</div>
-                            <div class="review-photo">
-                                <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
-                            </div>
-                            <div class="review-date">25.02.2025</div>
-                        </div>
-
+                        <div class="review-date">25.02.2025</div>
                     </div>
 
                 </div>
+
             </div>
         </div>
     </div>

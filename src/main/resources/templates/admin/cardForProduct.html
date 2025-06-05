@@ -133,12 +133,11 @@
 
                 <div class="gallery">
                     <div class="gallery-images">
-                        <img class="active" height="400px" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
-                        <img class="active" height="400px" src="http://image.hermes-plus.ru/api/images/381d5399-cb21-4762-8a3d-7523c8bbb40d_01.jpg" alt="Image 1">
+                        <img class="active" height="400px" th:each="url : ${product.urls}" th:src="${url}" alt="Image 1">
+
 
                         <button style="" class="gallery-button prev-button">&lt;</button>
                         <button style="" class="gallery-button next-button">&gt;</button>
-
                     </div>
 
                     <button class="btn" type="file">Добавить картинку</button>
@@ -150,60 +149,60 @@
                     <div class="form-container">
                         <div class="articul">
                             <label id="articul">Артикул:</label>
-                            <label id="articul-nubmer" th:text="${article}">2340565</label>
+                            <label id="articul-nubmer" th:text="${product.article}">2340565</label>
                         </div>
                         <div class="form-group">
                             <label for="password">Наименование:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.name}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Цена:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.price}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="username">Конфигурация:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="username" th:value="${product.configuration}" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Основа:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="username" th:value="${product.basis}" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Механизм:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="username" th:value="${product.mechanism}" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Наполнение:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="username" th:value="${product.filling}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Общий габарит:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.size}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Спальное место:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.sleepingSpace}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Глубина:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.seatDepth}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Посадка:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.planting}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Глубина сидушки:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.seatDepth}" threquired>
                         </div>
                         <div class="form-group">
                             <label for="password">Подлокотники:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.armrests}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Короб:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="text" id="password" name="password" th:value="${product.box}" required>
                         </div>
 
                     </div>
@@ -212,7 +211,7 @@
                 <div class="tabs">
                     <div class="form-group">
                         <label for="password">Описание:</label>
-                        <textarea class="custom-textarea" id="password" name="password" required>
+                        <textarea class="custom-textarea" id="password" th:text="${product.description}" name="password" required>
                                 </textarea>
                     </div>
                 </div>
@@ -231,23 +230,14 @@
                 </div>
 
                 <div class="reviews-list">
-                    <div class="review">
-                        <div class="review-author">Иван Иванов</div>
+                    <div class="review" th:each="feedback : ${feedbacks}">
+                        <div class="review-author" th:text="${feedback.individualPerson.name}">Иван Иванов</div>
                         <div class="review-rating">★★★★★</div>
-                        <div class="review-text">Отличный продукт! Всё работает как надо.</div>
-                        <div class="review-photo">
-                            <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
-                        </div>
-                        <div class="review-date">09.02.2025</div>
-                    </div>
-                    <div class="review">
-                        <div class="review-author">Мария Петрова</div>
-                        <div class="review-rating">★★★★★</div>
-                        <div class="review-text">Очень довольна покупкой. Рекомендую!</div>
-                        <div class="review-photo">
-                            <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">
-                        </div>
-                        <div class="review-date">25.02.2025</div>
+                        <div class="review-text" th:text="${feedback.text}">Отличный продукт! Всё работает как надо.</div>
+                        <!--                    <div class="review-photo">-->
+                        <!--                        <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">-->
+                        <!--                    </div>-->
+                        <div class="review-date" th:text="${feedback.date}">09.02.2025</div>
                     </div>
 
                 </div>
@@ -256,7 +246,7 @@
         </div>
     </div>
 </div>
-</div>
-<script src="/static/scripts/card.js"></script>
+<!--</div>-->
+<script th:src="@{/scripts/card.js}"></script>
 </body>
 </html>

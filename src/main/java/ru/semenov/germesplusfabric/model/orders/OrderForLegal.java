@@ -2,15 +2,19 @@ package ru.semenov.germesplusfabric.model.orders;
 
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import ru.semenov.germesplusfabric.enums.DeliveryType;
+import ru.semenov.germesplusfabric.enums.OrderStatus;
 import ru.semenov.germesplusfabric.model.Fabric;
 import ru.semenov.germesplusfabric.model.persons.FabricManager;
 import ru.semenov.germesplusfabric.model.persons.LegalPerson;
 import ru.semenov.germesplusfabric.model.products.ProductForLegal;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -26,12 +30,13 @@ public class OrderForLegal {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private LegalPerson legalPerson;
 
-    @ElementCollection
-    @CollectionTable(name = "orderForLegalProduct", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "products")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "order_for_legal_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<ProductForLegal> products;
-
-    private Integer totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "fabric_id")
@@ -43,4 +48,16 @@ public class OrderForLegal {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private FabricManager fabricManager;
 
+    private LocalDate orderDate;
+
+    private Integer totalPrice;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private DeliveryType deliveryType;
+
+    @Column(length = 100)
+    private String deliveryAddress;
 }

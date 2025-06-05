@@ -21,7 +21,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @ToString
-public class PointManager {
+public class PointManager implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
@@ -50,4 +50,14 @@ public class PointManager {
     @JoinColumn(name = "point_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private PointOfSale pointOfSale;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
 }

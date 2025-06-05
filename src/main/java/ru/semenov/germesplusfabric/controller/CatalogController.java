@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.semenov.germesplusfabric.enums.RoleFabric;
+import ru.semenov.germesplusfabric.model.feedbacks.FeedbackOnProductForIndividual;
 import ru.semenov.germesplusfabric.model.persons.FabricManager;
 import ru.semenov.germesplusfabric.model.products.ProductForIndividual;
+import ru.semenov.germesplusfabric.service.FeedbackForIndividualService;
 import ru.semenov.germesplusfabric.service.ProductForIndividualService;
 
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
 public class CatalogController {
 
     private final ProductForIndividualService productForIndividualService;
+    private final FeedbackForIndividualService feedbackForIndividualService;
 
     @ModelAttribute
     public void modelAttributes(
@@ -73,8 +76,10 @@ public class CatalogController {
             @PathVariable Long id
     ) {
         ProductForIndividual product = productForIndividualService.getById(id);
+        List<FeedbackOnProductForIndividual> feedbacks = feedbackForIndividualService.getByProductForIndividual(id);
 
         model.addAttribute("product", product);
+        model.addAttribute("feedbacks", feedbacks);
 
         return "admin/cardForProduct";
     }

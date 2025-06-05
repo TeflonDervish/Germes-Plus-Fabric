@@ -6,8 +6,8 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.semenov.germesplusfabric.model.Fabric;
-import ru.semenov.germesplusfabric.model.products.ProductForIndividual;
-import ru.semenov.germesplusfabric.model.products.ProductForLegal;
+import ru.semenov.germesplusfabric.model.orders.OrderForFabric;
+import ru.semenov.germesplusfabric.model.orders.OrderForLegal;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,15 +28,21 @@ public class OtchetForFabric {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @ElementCollection
-    @CollectionTable(name = "otchetForFabricIndividual", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "products")
-    private List<ProductForIndividual> productsForIndividuals;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "otchets_for_fabric_individual",
+            joinColumns = @JoinColumn(name = "otchet_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id")
+    )
+    private List<OrderForFabric> orderForFabrics;
 
-    @ElementCollection
-    @CollectionTable(name = "otchetForFabricLegal", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "products")
-    private List<ProductForLegal> productsForLegals;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "otchets_for_fabric_legal",
+            joinColumns = @JoinColumn(name = "otchet_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id")
+    )
+    private List<OrderForLegal> orderForLegals;
 
     @ManyToOne
     @JoinColumn(name = "fabric_otchet_id")
@@ -48,5 +54,26 @@ public class OtchetForFabric {
     private String description;
 
     private Integer totalPrice;
-    
+    private Integer count;
+    private Integer meanPrice;
+
+    public Integer getOrderCount() {
+        this.count = orderForFabrics.size() + orderForLegals.size();
+        return count;
+    }
+
+    public Integer getTotalPrice() {
+        totalPrice = 0;
+        for (OrderForFabric order : orderForFabrics)
+            totalPrice += order.getTotalPrice();
+        for (OrderForLegal order : orderForLegals)
+            totalPrice += order.getTotalPrice();
+        return totalPrice;
+    }
+
+    public Integer getMeanPrice() {
+        if (count == 0) return totalPrice;
+        return totalPrice / count;
+    }
+
 }

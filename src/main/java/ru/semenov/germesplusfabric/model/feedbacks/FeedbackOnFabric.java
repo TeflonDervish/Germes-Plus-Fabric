@@ -4,33 +4,34 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import ru.semenov.germesplusfabric.model.PointOfSale;
-import ru.semenov.germesplusfabric.model.persons.LegalPerson;
+import ru.semenov.germesplusfabric.model.Fabric;
+
+import java.time.LocalDate;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class FeedbackOnPointFromLegal {
+public class FeedbackOnFabric {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "point_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private PointOfSale pointOfSale;
-
-    @ManyToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "fabric_id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    private LegalPerson legalPerson;
+    private Fabric fabric;
+
+    private String name;
 
     @Column(columnDefinition = "TEXT")
     private String text;
 
     private Double grade;
+
+    private LocalDate date;
 
 }

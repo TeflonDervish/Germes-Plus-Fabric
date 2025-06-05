@@ -1,19 +1,18 @@
 package ru.semenov.germesplusfabric.model.feedbacks;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.semenov.germesplusfabric.model.persons.LegalPerson;
 import ru.semenov.germesplusfabric.model.products.ProductForLegal;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@Builder
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 public class FeedbackOnProductForLegal {
 
@@ -23,7 +22,7 @@ public class FeedbackOnProductForLegal {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private ProductForLegal productForLegal;
 
     @ManyToOne
@@ -35,9 +34,10 @@ public class FeedbackOnProductForLegal {
     private String text;
 
     private Double grade;
+    private LocalDate date;
 
     @ElementCollection
-    @CollectionTable(name="urlsFeedbackForProductForLegal", joinColumns = @JoinColumn(name="id"))
+    @CollectionTable(name = "urlsFeedbackForProductForLegal", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "urls")
     private List<String> urls;
 

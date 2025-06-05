@@ -42,9 +42,12 @@ public class OrderForIndividual {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private PointManager pointManager;
 
-    @ElementCollection
-    @CollectionTable(name = "orderForIndividualProduct", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "products")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "order_for_individual_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<ProductForIndividual> products;
 
     private LocalDate orderDate;

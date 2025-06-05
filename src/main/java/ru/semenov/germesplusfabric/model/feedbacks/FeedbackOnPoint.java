@@ -1,21 +1,20 @@
 package ru.semenov.germesplusfabric.model.feedbacks;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.semenov.germesplusfabric.model.PointOfSale;
-import ru.semenov.germesplusfabric.model.persons.IndividualPerson;
+
+import java.time.LocalDate;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class FeedbackOnPointFromIndividual {
+public class FeedbackOnPoint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +22,16 @@ public class FeedbackOnPointFromIndividual {
 
     @ManyToOne
     @JoinColumn(name = "point_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private PointOfSale pointOfSale;
-
-    @ManyToOne
-    @JoinColumn(name = "person_id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
-    private IndividualPerson individualPerson;
+    private     PointOfSale pointOfSale;
+
+    private String name;
 
     @Column(columnDefinition = "TEXT")
     private String text;
 
-    private double grade;
+    private Double grade;
+
+    private LocalDate date;
 
 }

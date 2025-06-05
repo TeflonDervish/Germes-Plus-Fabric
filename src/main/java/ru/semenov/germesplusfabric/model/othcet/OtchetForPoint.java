@@ -6,7 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import ru.semenov.germesplusfabric.model.PointOfSale;
-import ru.semenov.germesplusfabric.model.products.ProductForIndividual;
+import ru.semenov.germesplusfabric.model.orders.OrderForIndividual;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,10 +27,14 @@ public class OtchetForPoint {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @ElementCollection
-    @CollectionTable(name = "otchetsForPointProducts", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "products")
-    private List<ProductForIndividual> products;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "otchets_for_point_orders",
+            joinColumns = @JoinColumn(name = "otchet_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id")
+    )
+    private List<OrderForIndividual> orders;
+
 
     @ManyToOne
     @JoinColumn(name = "point_id")
@@ -41,5 +45,23 @@ public class OtchetForPoint {
     private String description;
 
     private Integer totalPrice;
+    private Integer count;
+    private Integer meanPrice;
 
+    public Integer getOrderCount() {
+        this.count = orders.size();
+        return count;
+    }
+
+    public Integer getTotalPrice() {
+        totalPrice = 0;
+        for (OrderForIndividual order : orders)
+            totalPrice += order.getTotalPrice();
+        return totalPrice;
+    }
+
+    public Integer getMeanPrice() {
+        if (count == 0) return totalPrice;
+        return totalPrice / count;
+    }
 }

@@ -15,6 +15,7 @@ import ru.semenov.germesplusfabric.model.persons.LegalPerson;
 import ru.semenov.germesplusfabric.model.products.ProductForLegal;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,7 +37,7 @@ public class OrderForLegal {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<ProductForLegal> products;
+    private List<ProductForLegal> products = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "fabric_id")

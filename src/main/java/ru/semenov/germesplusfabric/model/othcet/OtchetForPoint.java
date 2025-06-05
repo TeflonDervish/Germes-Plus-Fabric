@@ -9,6 +9,7 @@ import ru.semenov.germesplusfabric.model.PointOfSale;
 import ru.semenov.germesplusfabric.model.orders.OrderForIndividual;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,7 +34,7 @@ public class OtchetForPoint {
             joinColumns = @JoinColumn(name = "otchet_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id")
     )
-    private List<OrderForIndividual> orders;
+    private List<OrderForIndividual> orders = new ArrayList<>();
 
 
     @ManyToOne

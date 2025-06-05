@@ -9,6 +9,7 @@ import lombok.Setter;
 import ru.semenov.germesplusfabric.model.persons.IndividualPerson;
 import ru.semenov.germesplusfabric.model.products.ProductForLegal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -29,7 +30,7 @@ public class KorzinaForLegal {
     @ElementCollection
     @CollectionTable(name = "korzinaProductForLegal", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "products")
-    private List<ProductForLegal> products;
+    private List<ProductForLegal> products = new ArrayList<>();
 
     public void addProduct(ProductForLegal product) {
         products.add(product);

@@ -12,6 +12,7 @@ import ru.semenov.germesplusfabric.model.persons.PointManager;
 import ru.semenov.germesplusfabric.model.products.ProductForIndividual;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,7 +49,7 @@ public class OrderForIndividual {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private List<ProductForIndividual> products;
+    private List<ProductForIndividual> products = new ArrayList<>();
 
     private LocalDate orderDate;
 

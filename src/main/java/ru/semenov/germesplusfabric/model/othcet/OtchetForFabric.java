@@ -10,6 +10,7 @@ import ru.semenov.germesplusfabric.model.orders.OrderForFabric;
 import ru.semenov.germesplusfabric.model.orders.OrderForLegal;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,7 +35,7 @@ public class OtchetForFabric {
             joinColumns = @JoinColumn(name = "otchet_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id")
     )
-    private List<OrderForFabric> orderForFabrics;
+    private List<OrderForFabric> orderForFabrics = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -42,7 +43,7 @@ public class OtchetForFabric {
             joinColumns = @JoinColumn(name = "otchet_id"),
             inverseJoinColumns = @JoinColumn(name = "order_id")
     )
-    private List<OrderForLegal> orderForLegals;
+    private List<OrderForLegal> orderForLegals = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "fabric_otchet_id")

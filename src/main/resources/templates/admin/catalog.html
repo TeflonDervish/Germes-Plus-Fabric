@@ -128,7 +128,7 @@
                         <td><a th:text="${product.basis}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
                         <td><a th:text="${product.filling}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
                         <td><a th:text="${product.size}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
-                        <td><a th:text="${product.price}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                        <td><a th:text="${product.price} + ' руб.'" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
                     </tr>
                     </tbody>
                 </table>

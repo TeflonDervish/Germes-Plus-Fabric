@@ -89,9 +89,9 @@
                     <td><a th:text="${otchet.name}" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
                     <td><a th:text="${otchet.startDate}" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
                     <td><a th:text="${otchet.endDate}" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
-                    <td><a th:text="${otchet.totalPrice}" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
+                    <td><a th:text="${otchet.totalPrice} + ' руб.'" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
                     <td><a th:text="${otchet.count}" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
-                    <td><a th:text="${otchet.meanPrice}" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
+                    <td><a th:text="${otchet.meanPrice} + ' руб.'" th:href="@{/otchet/{id} (id=${otchet.id})}"></a></td>
                 </tr>
                 </tbody>
             </table>

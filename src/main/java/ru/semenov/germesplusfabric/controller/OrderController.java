@@ -7,12 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.semenov.germesplusfabric.enums.OrderStatus;
 import ru.semenov.germesplusfabric.enums.RoleFabric;
+import ru.semenov.germesplusfabric.model.Fabric;
 import ru.semenov.germesplusfabric.model.orders.OrderForFabric;
 import ru.semenov.germesplusfabric.model.orders.OrderForLegal;
 import ru.semenov.germesplusfabric.model.persons.FabricManager;
 import ru.semenov.germesplusfabric.service.OrderForFabricService;
 import ru.semenov.germesplusfabric.service.OrderForLegalService;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -87,7 +89,12 @@ public class OrderController {
     ) {
         OrderForFabric order = orderForFabricService.getById(id);
 
+        model.addAttribute("typeOrder", "fabric");
         model.addAttribute("order", order);
+        model.addAttribute("status",
+                Arrays.stream(OrderStatus.values())
+                        .filter(status -> status != OrderStatus.WAITING_ACCESS)
+                        .toArray(OrderStatus[]::new));
 
         if (manager.getRole().equals(RoleFabric.ADMIN)) return "admin/order";
         return "order";
@@ -101,10 +108,35 @@ public class OrderController {
     ) {
         OrderForLegal order = orderForLegalService.getById(id);
 
+        model.addAttribute("typeOrder", "legal");
         model.addAttribute("order", order);
+        model.addAttribute("status",
+                Arrays.stream(OrderStatus.values())
+                        .filter(status -> status != OrderStatus.WAITING_ACCESS)
+                        .toArray(OrderStatus[]::new));
 
         if (manager.getRole().equals(RoleFabric.ADMIN)) return "admin/order";
         return "order";
+    }
+
+    @PostMapping("/change-status/fabric/{id}")
+    public String changeStatusFabric(
+            @PathVariable Long id,
+            @RequestParam String status,
+            @AuthenticationPrincipal FabricManager manager
+    ) {
+        orderForFabricService.changeOrderStatus(id, OrderStatus.valueOf(status), manager);
+        return "redirect:/order/fabric/" + id;
+    }
+
+    @PostMapping("/change-status/legal/{id}")
+    public String changeStatusLegal(
+            @PathVariable Long id,
+            @RequestParam String status,
+            @AuthenticationPrincipal FabricManager manager
+    ) {
+        orderForLegalService.changeOrderStatus(id, OrderStatus.valueOf(status), manager);
+        return "redirect:/order/fabric/" + id;
     }
 
 

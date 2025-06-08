@@ -8,6 +8,7 @@ import ru.semenov.germesplusfabric.enums.OrderStatus;
 import ru.semenov.germesplusfabric.model.Fabric;
 import ru.semenov.germesplusfabric.model.orders.OrderForFabric;
 import ru.semenov.germesplusfabric.model.orders.OrderForLegal;
+import ru.semenov.germesplusfabric.model.persons.FabricManager;
 import ru.semenov.germesplusfabric.model.persons.LegalPerson;
 import ru.semenov.germesplusfabric.repository.OrderForLegalRepository;
 
@@ -23,6 +24,10 @@ public class OrderForLegalService {
     private final OrderForLegalRepository orderForLegalRepository;
     private final FabricService fabricService;
 
+
+    public OrderForLegal save(OrderForLegal order) {
+        return orderForLegalRepository.save(order);
+    }
 
     public List<OrderForLegal> getOrderForLegal(LegalPerson user) {
         log.info("Получение заказов пользователя");
@@ -46,5 +51,12 @@ public class OrderForLegalService {
 
     public List<OrderForLegal> getByDateBetween(LocalDate startDate, LocalDate endDate) {
         return orderForLegalRepository.findByOrderDateBetween(startDate, endDate);
+    }
+
+    public OrderForLegal changeOrderStatus(Long id, OrderStatus status, FabricManager manager) {
+        log.info("Смена статуса заказа " + status);
+        OrderForLegal order = getById(id);
+        order.setStatus(status);
+        return save(order);
     }
 }

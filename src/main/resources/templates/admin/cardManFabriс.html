@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Менеджер фабрики</title>
-    <link rel="stylesheet" th:href="@{/style/for_point.css}" />
+    <link rel="stylesheet" th:href="@{/style/for_point.css}"/>
 
     <link rel="stylesheet" th:href="@{/style/for_admin.css}"/>
     <style>
@@ -47,7 +47,7 @@
         .login-form button.delete:hover,
         .form_client button.delete:hover {
             background: white;
-            color:rgb(245, 0, 0);
+            color: rgb(245, 0, 0);
             border: 3px solid rgb(245, 0, 0);
             transform: translateY(-2px);
         }
@@ -55,78 +55,84 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <header class="fixed">
-            <div class="nav-and-search">
-                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+<div class="wrapper">
+    <header class="fixed">
+        <div class="nav-and-search">
+            <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <header class="invisible">
-            <div class="nav-and-search">
-                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+    </header>
+    <header class="invisible">
+        <div class="nav-and-search">
+            <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <div class="container">
-            <div class="sidebar fixed">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <a th:href="@{/employee}">Сотрудники</a>
-                <a th:href="@{/point}">Магазины</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
+    </header>
+    <div class="container">
+        <div class="sidebar fixed">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <a th:href="@{/employee}">Сотрудники</a>
+            <a th:href="@{/point}">Магазины</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
             </div>
+        </div>
 
-            <div class="sidebar invisible">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <a th:href="@{/employee}">Сотрудники</a>
-                <a th:href="@{/point}">Магазины</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
+        <div class="sidebar invisible">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <a th:href="@{/employee}">Сотрудники</a>
+            <a th:href="@{/point}">Магазины</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
             </div>
-            <div class="client">
-                <div class="form_client">
-                    <h2></h2>
-                    <form action="/login" method="POST" style="
+        </div>
+        <div class="client">
+            <div class="form_client">
+                <h2></h2>
+                <form th:action="@{/employee/save/fabric/{id} (id=${manager.id})}" method="POST" style="
                     margin-top: 50px;">
-                        <div class="form-group">
-                            <label for="username">Номер телефона:</label>
-                            <input type="text" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Фамилия:</label>
-                            <input type="text" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Имя:</label>
-                            <input type="text" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Пароль:</label>
-                            <input type="password" id="password" name="password" required>
-                        </div>
-                        <button type="submit">Сохранить</button>
-                        <button class="delete">Удалить</button>
-                    </form>
-                </div>
+                    <input type="hidden" name="id" th:value="${manager.id}">
+                    <div class="form-group">
+                        <label for="username">Номер телефона:</label>
+                        <input type="text" id="username" name="phoneNumber" th:value="${manager.phoneNumber}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Email:</label>
+                        <input type="text" id="username" name="email" th:value="${manager.email}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Фамилия:</label>
+                        <input type="text" id="username" name="surname" th:value="${manager.surname}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Имя:</label>
+                        <input type="text" id="username" name="name" th:value="${manager.name}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <button type="submit">Сохранить</button>
+                </form>
+                <form th:action="@{/employee/delete/fabric/{id} (id=${manager.id})}" method="post">
+                    <button class="delete">Удалить</button>
+                </form>
             </div>
         </div>
     </div>
-
+</div>
 
 
 </body>

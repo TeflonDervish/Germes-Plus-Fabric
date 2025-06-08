@@ -44,4 +44,22 @@ public class FabricManagerService implements UserDetailsService {
     public List<FabricManager> getBySurname(String surname) {
         return fabricManagerRepository.findBySurnameContainingIgnoreCase(surname);
     }
+
+    public FabricManager getById(Long id) {
+        return fabricManagerRepository.findById(id).orElse(null);
+    }
+
+    public void deleteById(Long id) {
+        fabricManagerRepository.deleteById(id);
+    }
+
+    public FabricManager updateManager(Long managerId, FabricManager newData) {
+        FabricManager oldManager = fabricManagerRepository.findById(managerId).orElse(null);
+        oldManager.setSurname(newData.getSurname());
+        oldManager.setName(newData.getName());
+        oldManager.setEmail(newData.getEmail());
+        oldManager.setPhoneNumber(newData.getPhoneNumber());
+        return fabricManagerRepository.save(oldManager);
+    }
+
 }

@@ -3,7 +3,6 @@ package ru.semenov.germesplusfabric.service;
 import lombok.AllArgsConstructor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.id.IncrementGenerator;
 import org.springframework.stereotype.Service;
 import ru.semenov.germesplusfabric.model.Fabric;
 import ru.semenov.germesplusfabric.model.ScladFabric;
@@ -48,5 +47,19 @@ public class ScladFabricService {
                 .fabric(manager.getFabric())
                 .build();
         scladFabricRepository.save(scladFabric);
+    }
+
+    public ScladFabric getById(Long id) {
+        return scladFabricRepository.getById(id);
+    }
+
+    public void sale(Long scladId, FabricManager manager) {
+        ScladFabric sclad = getById(scladId);
+        sclad.setCount(sclad.getCount() - 1);
+        if (sclad.getCount() == 0) {
+            scladFabricRepository.delete(sclad);
+        } else {
+            scladFabricRepository.save(sclad);
+        }
     }
 }

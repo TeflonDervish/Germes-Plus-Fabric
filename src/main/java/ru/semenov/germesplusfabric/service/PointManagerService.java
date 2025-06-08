@@ -57,4 +57,22 @@ public class PointManagerService {
     public List<PointManager> getBySurname(String surname) {
         return pointManagerRepository.findBySurnameContainingIgnoreCase(surname);
     }
+
+    public void deleteById(Long id) {
+        pointManagerRepository.deleteById(id);
+    }
+
+    public PointManager getById(Long id) {
+        return pointManagerRepository.findById(id).orElse(null);
+    }
+
+    public PointManager update(Long managerId, PointManager newData) {
+        PointManager oldManager = pointManagerRepository.findById(managerId).orElse(null);
+        oldManager.setEmail(newData.getEmail());
+        oldManager.setPhoneNumber(newData.getPhoneNumber());
+//        oldManager.setPointOfSale(newData.getPointOfSale());
+        oldManager.setName(newData.getName());
+        oldManager.setSurname(newData.getSurname());
+        return pointManagerRepository.save(oldManager);
+    }
 }

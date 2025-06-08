@@ -714,3 +714,18 @@ tr:nth-child(even) {
     display: flex;
     justify-content: flex-end;
 }
+
+
+.delete_product {
+
+    background: red;
+    color: wheat;
+    padding: 5px 10px;
+    border: 1px solid;
+    border-radius: 15px;
+}
+
+.delete_product:before td {
+    width: auto;
+    padding: 0;
+}

@@ -102,48 +102,38 @@
             <div class="client">
                 <div class="form_client">
                     <h2></h2>
-                    <form th:action="/login" method="POST" style="
-                    margin-top: 50px;">
+                    <form th:action="@{/employee/save/point/{id} (id=${manager.id})}" method="POST" style="margin-top: 50px;">
                         <div class="form-group">
                             <label for="username">Номер телефона:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="phoneNumber" th:value="${manager.phoneNumber}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Email:</label>
+                            <input type="text" id="username" name="email" th:value="${manager.email}" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Фамилия:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="surname" th:value="${manager.surname}" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Имя:</label>
-                            <input type="text" id="username" name="username" required>
+                            <input type="text" id="username" name="name" th:value="${manager.name}" required>
                         </div>
                         <div class="form-group">
                             <label for="pickup-point">Магазин:</label>
-                            <select id="pickup-point" name="pickup-point" required >
-                                <option value="">-- Выберите магазин --</option>
-                                <option value="point1" data-address="г.Уфа, ул. Трамвайная, д. 2/3 , ТЦ Парус"
-                                    data-phone="+7 (123) 456-78-90" data-coords="54.796646, 56.074726">ул. Центральная,
+                            <select id="pickup-point" name="pickup-point" th:value="${manager.pointOfSale.id}" required >
+                                <option th:each="point : ${points}" th:value="${point.id}" th:data-address="${point.address}"
+                                        th:data-phone="${point.phoneNumber}" th:data-coords="${point.pointOnTheMap}" th:text="${point.name}">ул. Центральная,
                                     д. 1 (склад)</option>
-                                <option value="point2" data-address="ул. Торговая, д. 15"
-                                    data-phone="+7 (123) 456-78-91" data-coords="55.761244,37.628423">ул. Торговая, д.
-                                    15 (магазин)</option>
-                                <option value="point3" data-address="ул. Промышленная, д. 8"
-                                    data-phone="+7 (123) 456-78-92" data-coords="55.771244,37.638423">ул. Промышленная,
-                                    д. 8 (терминал)</option>
-                                <option value="point4" data-address="ул. Центральная, д. 1"
-                                    data-phone="+7 (123) 456-78-90" data-coords="55.751244,37.618423">ул. Центральная,
-                                    д. 1 (склад)</option>
-                                <option value="point5" data-address="ул. Торговая, д. 15"
-                                    data-phone="+7 (123) 456-78-91" data-coords="55.761244,37.628423">ул. Торговая, д.
-                                    15 (магазин)</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="password">Пароль:</label>
-                            <input type="password" id="password" name="password" required>
+                            <input type="password" id="password" name="password">
                         </div>
                         <button type="submit">Сохранить</button>
                     </form>
-                    <form th:action="@{/employee/delete/{id} (id=${})}">
+                    <form th:action="@{/employee/delete/point/{id} (id=${manager.id})}" method="post">
                         <button class="delete">Удалить</button>
                     </form>
                 </div>

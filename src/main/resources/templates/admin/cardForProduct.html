@@ -128,16 +128,17 @@
         </div>
 
         <div class="main-content">
-            <div class="cardForSofa center">
+            <form class="cardForSofa center">
 
 
                 <div class="gallery">
                     <div class="gallery-images">
-                        <img class="active" height="400px" th:each="url : ${product.urls}" th:src="${url}" alt="Image 1">
-
-
-                        <button style="" class="gallery-button prev-button">&lt;</button>
-                        <button style="" class="gallery-button next-button">&gt;</button>
+                        <img class="active" height="400px" th:each="url : ${product.urls}" th:src="${url}"
+                             alt="Image 1">
+                        <img class="active" height="400px" th:if="${product.id} == null" th:src="@{/img/no_image.jpg}"
+                             alt="Image 1">
+                        <button type="button" style="" class="gallery-button prev-button">&lt;</button>
+                        <button type="button" style="" class="gallery-button next-button">&gt;</button>
                     </div>
 
                     <button class="btn" type="file">Добавить картинку</button>
@@ -147,62 +148,61 @@
 
                 <div class="bodyPage">
                     <div class="form-container">
-                        <div class="articul">
-                            <label id="articul">Артикул:</label>
-                            <label id="articul-nubmer" th:text="${product.article}">2340565</label>
-                        </div>
+                        <input type="hidden" th:value="${product.id}" name="id">
                         <div class="form-group">
                             <label for="password">Наименование:</label>
-                            <input type="text" id="password" name="password" th:value="${product.name}" required>
+                            <input type="text" id="password" name="name" th:value="${product.name}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Цена:</label>
-                            <input type="text" id="password" name="password" th:value="${product.price}" required>
+                            <input type="text" id="password" name="price" th:value="${product.price}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="username">Конфигурация:</label>
-                            <input type="text" id="username" name="username" th:value="${product.configuration}" required>
+                            <input type="text" id="username" name="configuration" th:value="${product.configuration}"
+                                   required>
                         </div>
                         <div class="form-group">
                             <label for="username">Основа:</label>
-                            <input type="text" id="username" name="username" th:value="${product.basis}" required>
+                            <input type="text" id="username" name="basis" th:value="${product.basis}" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Механизм:</label>
-                            <input type="text" id="username" name="username" th:value="${product.mechanism}" required>
+                            <input type="text" id="username" name="mechanism" th:value="${product.mechanism}" required>
                         </div>
                         <div class="form-group">
                             <label for="username">Наполнение:</label>
-                            <input type="text" id="username" name="username" th:value="${product.filling}" required>
+                            <input type="text" id="username" name="filling" th:value="${product.filling}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Общий габарит:</label>
-                            <input type="text" id="password" name="password" th:value="${product.size}" required>
+                            <input type="text" id="password" name="size" th:value="${product.size}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Спальное место:</label>
-                            <input type="text" id="password" name="password" th:value="${product.sleepingSpace}" required>
+                            <input type="text" id="password" name="sleepingSpace" th:value="${product.sleepingSpace}"
+                                   required>
                         </div>
                         <div class="form-group">
                             <label for="password">Глубина:</label>
-                            <input type="text" id="password" name="password" th:value="${product.seatDepth}" required>
+                            <input type="text" id="password" name="depth" th:value="${product.depth}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Посадка:</label>
-                            <input type="text" id="password" name="password" th:value="${product.planting}" required>
+                            <input type="text" id="password" name="planting" th:value="${product.planting}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Глубина сидушки:</label>
-                            <input type="text" id="password" name="password" th:value="${product.seatDepth}" threquired>
+                            <input type="text" id="password" name="seatDepth" th:value="${product.seatDepth}" threquired>
                         </div>
                         <div class="form-group">
                             <label for="password">Подлокотники:</label>
-                            <input type="text" id="password" name="password" th:value="${product.armrests}" required>
+                            <input type="text" id="password" name="armrests" th:value="${product.armrests}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Короб:</label>
-                            <input type="text" id="password" name="password" th:value="${product.box}" required>
+                            <input type="text" id="password" name="box" th:value="${product.box}" required>
                         </div>
 
                     </div>
@@ -211,17 +211,17 @@
                 <div class="tabs">
                     <div class="form-group">
                         <label for="password">Описание:</label>
-                        <textarea class="custom-textarea" id="password" th:text="${product.description}" name="password" required>
+                        <textarea class="custom-textarea" id="password" th:text="${product.description}" name="description"
+                                  required>
                                 </textarea>
                     </div>
                 </div>
                 <div>
                     <button class="btn">Сохранить</button>
-                    <button class="btn btn-secondary">Удалить товар</button>
                 </div>
-
-
-
+            </form>
+            <div class="center">
+                <button class="btn btn-secondary center">Удалить товар</button>
             </div>
             <div class="reviews center">
                 <h2>Отзывы</h2>
@@ -233,7 +233,8 @@
                     <div class="review" th:each="feedback : ${feedbacks}">
                         <div class="review-author" th:text="${feedback.individualPerson.name}">Иван Иванов</div>
                         <div class="review-rating">★★★★★</div>
-                        <div class="review-text" th:text="${feedback.text}">Отличный продукт! Всё работает как надо.</div>
+                        <div class="review-text" th:text="${feedback.text}">Отличный продукт! Всё работает как надо.
+                        </div>
                         <!--                    <div class="review-photo">-->
                         <!--                        <img class="active" th:each="url : ${urls}" th:src="${url}" alt="Image 1">-->
                         <!--                    </div>-->

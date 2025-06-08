@@ -2,8 +2,6 @@ package ru.semenov.germesplusfabric.controller;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.Banner;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +50,7 @@ public class CatalogController {
             Model model,
             @AuthenticationPrincipal FabricManager manager
     ) {
+        model.addAttribute("product", new ProductForIndividual());
 
         return "admin/cardForProduct";
     }

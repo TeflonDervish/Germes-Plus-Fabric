@@ -54,7 +54,8 @@ public class EmployeeController {
             @PathVariable Long id,
             Model model
     ) {
-
+        FabricManager manager = fabricManagerService.getById(id);
+        model.addAttribute("manager", manager);
 
         return "admin/cardManFabriс";
     }
@@ -64,6 +65,9 @@ public class EmployeeController {
             @PathVariable Long id,
             Model model
     ) {
+       PointManager manager = pointManagerService.getById(id);
+       model.addAttribute("manager", manager);
+
         return "admin/cardGlavManPoint";
     }
 
@@ -111,4 +115,45 @@ public class EmployeeController {
 
         return "admin/employee";
     }
+
+    @PostMapping("/delete/point/{id}")
+    public String deleteManPoint(
+            @PathVariable Long id,
+            Model model
+    ) {
+        pointManagerService.deleteById(id);
+        return "redirect:/employee";
+    }
+
+    @PostMapping("/delete/fabric/{id}")
+    public String deleteManFabric(
+            @PathVariable Long id,
+            Model model
+    ) {
+        fabricManagerService.deleteById(id);
+        return "redirect:/employee";
+    }
+
+    @PostMapping("/save/fabric/{id}")
+    public String saveManFabric(
+            @PathVariable Long id,
+            @ModelAttribute FabricManager manager,
+            Model model
+    ) {
+        FabricManager newManager = fabricManagerService.updateManager(id, manager);
+        model.addAttribute("manager", newManager);
+        return "admin/cardManFabriс";
+    }
+
+    @PostMapping("/save/point/{id}")
+    public String saveManPoint(
+            @PathVariable Long id,
+            @ModelAttribute PointManager manager,
+            Model model
+    ) {
+        PointManager newManager = pointManagerService.update(id, manager);
+        model.addAttribute("manager", newManager);
+        return "admin/cardGlavManPoint";
+    }
+
 }

@@ -456,15 +456,18 @@
                         </div>
                         <div class="form-group">
                             <label for="customerName">От</label>
-                            <input disabled id="customerName" name="customerName" th:value="${otchet.startDate}" type="date">
+                            <input disabled id="customerName" name="customerName" th:value="${otchet.startDate}"
+                                   type="date">
                         </div>
                         <div class="form-group">
                             <label for="customerPhone">До</label>
-                            <input disabled id="customerPhone" name="customerPhone" th:value="${otchet.endDate}" type="date">
+                            <input disabled id="customerPhone" name="customerPhone" th:value="${otchet.endDate}"
+                                   type="date">
                         </div>
                         <div class="form-group">
                             <label for="textarea">Описание</label>
-                            <textarea disabled id="textarea" name="customerPhone" th:text="${otchet.description}"></textarea>
+                            <textarea disabled id="textarea" name="customerPhone"
+                                      th:text="${otchet.description}"></textarea>
                         </div>
                     </div>
                     <div class="actions">
@@ -477,16 +480,16 @@
                         <tr>
                             <th class="filter-header">
                                 <span>Статус</span>
-<!--                                <form th:action="@{/order/status}" method="post">-->
-<!--                                    <div class="filter-dropdown">-->
-<!--                                        <select name="status">-->
-<!--                                            <option th:each="status : ${status}" th:value="${status}" th:text="${status.title}">-->
-<!--                                                Ожидает подтверждения-->
-<!--                                            </option>-->
-<!--                                        </select>-->
-<!--                                        <button>Применить</button>-->
-<!--                                    </div>-->
-<!--                                </form>-->
+                                <!--                                <form th:action="@{/order/status}" method="post">-->
+                                <!--                                    <div class="filter-dropdown">-->
+                                <!--                                        <select name="status">-->
+                                <!--                                            <option th:each="status : ${status}" th:value="${status}" th:text="${status.title}">-->
+                                <!--                                                Ожидает подтверждения-->
+                                <!--                                            </option>-->
+                                <!--                                        </select>-->
+                                <!--                                        <button>Применить</button>-->
+                                <!--                                    </div>-->
+                                <!--                                </form>-->
                             </th>
                             <th>Номер заказа</th>
                             <th>Дата заказа</th>
@@ -520,12 +523,26 @@
                         </thead>
                         <tbody>
                         <tr th:each="order : ${otchet.orderForFabrics}">
-                            <td><a th:text="${order.status.title}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                            <td><a th:text="${order.status.title}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                            </td>
                             <td><a th:text="${order.id}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
-                            <td><a th:text="${order.orderDate}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
-                            <td><a th:text="${order.totalPrice}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
-                            <td><a th:text="${order.pointOfSale.name}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
-
+                            <td><a th:text="${order.orderDate}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                            </td>
+                            <td><a th:text="${order.totalPrice} + ' руб.'"
+                                   th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                            <td><a th:text="${order.pointOfSale.name}"
+                                   th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
+                        </tr>
+                        <tr th:each="order : ${otchet.orderForLegals}">
+                            <td><a th:text="${order.status.title}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                            </td>
+                            <td><a th:text="${order.id}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
+                            <td><a th:text="${order.orderDate}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                            </td>
+                            <td><a th:text="${order.totalPrice} + ' руб.'"
+                                   th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                            <td><a th:text="${order.fabric.name}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -537,6 +554,6 @@
         </div>
 
     </div>
-
+</div>
 </body>
 </html>

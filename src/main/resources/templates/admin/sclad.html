@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Склад</title>
     <link rel="stylesheet" th:href="@{/style/for_point.css}" />
-
     <link rel="stylesheet" th:href="@{/style/for_admin.css}"/>
     <style>
         #orderStatus {
@@ -121,14 +120,16 @@
                             <th>Общий габарит</th>
                             <th>Стоимость</th>
                             <th>Количество</th>
+                            <th>Продажа</th>
                         </tr>
                     </thead>
                     <tbody>
                     <tr th:each="sclads : ${sclad}">
                         <td th:text="${sclads.productForIndividual.name}"></td>
                         <td th:text="${sclads.productForIndividual.size}"></td>
-                        <td th:text="${sclads.productForIndividual.price}"></td>
+                        <td th:text="${sclads.productForIndividual.price} + ' руб.'"></td>
                         <td th:text="${sclads.count}"></td>
+                        <td style="width: 79px"><a class="delete_product" th:href="@{/sclad/sale/{id} (id=${sclads.id})}">Продан</a></td>
                     </tr>
                     </tbody>
                 </table>

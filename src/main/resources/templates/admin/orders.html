@@ -86,6 +86,7 @@
                             </div>
                         </form>
                     </th>
+                    <th>Тип заказа</th>
                     <th>Номер заказа</th>
                     <th>Дата заказа</th>
                     <!--                        <th class="filter-header">-->
@@ -119,17 +120,19 @@
                 <tbody>
                 <tr th:each="order : ${orderForFabrics}">
                     <td><a th:text="${order.status.title}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="'Заказ с фабрики'" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
                     <td><a th:text="${order.id}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
                     <td><a th:text="${order.orderDate}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
-                    <td><a th:text="${order.totalPrice}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.totalPrice} + ' руб.'" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
                     <td><a th:text="${order.pointOfSale.name}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
 
                 </tr>
                 <tr th:each="order : ${orderForLegals}">
                     <td><a th:text="${order.status.title}" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="'Заказ юр лиц'" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
                     <td><a th:text="${order.id}" th:href="@{/order/leagl/{id} (id=${order.id})}"></a></td>
                     <td><a th:text="${order.orderDate}" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
-                    <td><a th:text="${order.totalPrice}" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.totalPrice} + ' руб.'" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
                     <td><a th:text="${order.fabric.name}" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
 
                 </tr>

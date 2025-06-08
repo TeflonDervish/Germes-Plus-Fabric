@@ -71,4 +71,21 @@ public class ScladController {
         scladFabricService.addProduct(productId, count, manager);
         return "redirect:/sclad";
     }
+
+    @GetMapping("/sale/{id}")
+    public String sale(
+            @PathVariable Long id,
+            @AuthenticationPrincipal FabricManager manager,
+            Model model
+    ) {
+        scladFabricService.sale(id, manager);
+        List<ScladFabric> sclad = scladFabricService.getByFabric(manager.getFabric());
+        List<ProductForIndividual> products = productForIndividualService.getAll();
+
+        model.addAttribute("sclad", sclad);
+        model.addAttribute("products", products);
+
+        if (manager.getRole().equals(RoleFabric.ADMIN)) return "admin/sclad";
+        return "sclad";
+    }
 }

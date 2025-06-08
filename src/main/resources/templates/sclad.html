@@ -86,42 +86,45 @@
                     <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
                 </div>
             </div>
-
             <div class="main-content">
                 <header class="header_for_point">
-                    <div class="nav-and-search" style="display: flex;flex-direction: row;">
-                        <select id="orderStatus" name="orderStatus">
-                            <option value="new">Диван</option>
-                            <option value="processing">В обработке</option>
-                            <option value="completed">Завершен</option>
-                            <option value="cancelled">Отменен</option>
-                        </select>
-                        <input type="number" min="1" value="1">
-                        <button>+ Добавить товар</button>
-
-                    </div>
+                    <form th:action="@{/sclad/add}" method="post">
+                        <div class="nav-and-search" style="display: flex;flex-direction: row;">
+                            <select id="orderStatus" name="productId">
+                                <option th:each="product : ${products}"
+                                        th:value="${product.id}"
+                                        th:text="${product.name}">Диван</option>
+                            </select>
+                            <input type="number" name="count" min="1" value="1">
+                            <button>+ Добавить товар</button>
+                        </div>
+                    </form>
 
                     <div class="search-container">
-                        <input type="text" placeholder="Поиск...">
+                        <form th:action="@{/sclad/search}" method="post">
+                            <input type="text" name="query" placeholder="Поиск...">
+                        </form>
                     </div>
 
                 </header>
                 <table class="documents-table">
                     <thead>
-                        <tr>
-                            <th>Наименование</th>
-                            <th>Общий габарит</th>
-                            <th>Стоимость</th>
-                            <th>Количество</th>
-                        </tr>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Общий габарит</th>
+                        <th>Стоимость</th>
+                        <th>Количество</th>
+                        <th>Продажа</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="sclads : ${sclad}">
-                            <td th:text="${sclads.productForIndividual.name}"></td>
-                            <td th:text="${sclads.productForIndividual.size}"></td>
-                            <td th:text="${sclads.productForIndividual.price}"></td>
-                            <td th:text="${sclads.count}"></td>
-                        </tr>
+                    <tr th:each="sclads : ${sclad}">
+                        <td th:text="${sclads.productForIndividual.name}"></td>
+                        <td th:text="${sclads.productForIndividual.size}"></td>
+                        <td th:text="${sclads.productForIndividual.price} + ' руб.'"></td>
+                        <td th:text="${sclads.count}"></td>
+                        <td style="width: 79px"><a class="delete_product" th:href="@{/sclad/sale/{id} (id=${sclads.id})}">Продан</a></td>
+                    </tr>
                     </tbody>
                 </table>
 

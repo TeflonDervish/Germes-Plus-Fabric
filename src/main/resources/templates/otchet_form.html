@@ -394,80 +394,121 @@
                     <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
                 </div>
             </div>
-        <div class="container_zakaz">
-            <h1>Oтчет №</h1>
-        
-        <form id="orderForm">            
-            <div class="form-section">
-                <div class="section-title" style="display: flex; flex-direction: row; justify-content: space-between;"><span>Данные отчета</span> <button class=" btn-secondary">Скачать отчет</button></div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="customerName">Наименование</label>
-                        <input type="text" id="customerName" name="customerName" disabled>
+            <div class="container_zakaz">
+                <h1>Oтчет № <span th:text="${otchet.id}"></span></h1>
+
+                <form id="orderForm">
+                    <div class="form-section">
+                        <div class="section-title"
+                             style="display: flex; flex-direction: row; justify-content: space-between;">
+                            <span>Данные отчета</span>
+                            <button class=" btn-secondary">Скачать отчет</button>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customerName">Наименование</label>
+                                <input disabled id="customerName" name="customerName" th:value="${otchet.name}" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label for="customerName">От</label>
+                                <input disabled id="customerName" name="customerName" th:value="${otchet.startDate}"
+                                       type="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhone">До</label>
+                                <input disabled id="customerPhone" name="customerPhone" th:value="${otchet.endDate}"
+                                       type="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="textarea">Описание</label>
+                                <textarea disabled id="textarea" name="customerPhone"
+                                          th:text="${otchet.description}"></textarea>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <form th:action="@{/otchet/delete/{id}(id=${otchet.id})}" method="post">
+                                <button class="btn">Удалить отчет</button>
+                            </form>
+                        </div>
+                        <table class="documents-table">
+                            <thead>
+                            <tr>
+                                <th class="filter-header">
+                                    <span>Статус</span>
+                                    <!--                                <form th:action="@{/order/status}" method="post">-->
+                                    <!--                                    <div class="filter-dropdown">-->
+                                    <!--                                        <select name="status">-->
+                                    <!--                                            <option th:each="status : ${status}" th:value="${status}" th:text="${status.title}">-->
+                                    <!--                                                Ожидает подтверждения-->
+                                    <!--                                            </option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                        <button>Применить</button>-->
+                                    <!--                                    </div>-->
+                                    <!--                                </form>-->
+                                </th>
+                                <th>Номер заказа</th>
+                                <th>Дата заказа</th>
+                                <!--                        <th class="filter-header">-->
+                                <!--                            <span class="filter-icon">Статус оплаты</span>-->
+                                <!--                            <div class="filter-dropdown">-->
+                                <!--                                <select>-->
+                                <!--                                    <option value="">Все направления</option>-->
+                                <!--                                    <option value="incoming">Оплачен</option>-->
+                                <!--                                    <option value="outgoing">Не оплачен</option>-->
+                                <!--                                </select>-->
+                                <!--                                <button>Применить</button>-->
+                                <!--                            </div>-->
+                                <!--                        </th>-->
+                                <th>Стоимость заказа</th>
+                                <th class="filter-header">
+                                    <!--                            <span class="filter-icon">-->
+                                    Магазин
+                                    <!--                            </span>-->
+                                    <!--                            <div class="filter-dropdown">-->
+                                    <!--                                <select>-->
+                                    <!--                                    <option value="">Все направления</option>-->
+                                    <!--                                    <option value="incoming">Входящий</option>-->
+                                    <!--                                    <option value="outgoing">Исходящий</option>-->
+                                    <!--                                    <option value="internal">Внутренний</option>-->
+                                    <!--                                </select>-->
+                                    <!--                                <button>Применить</button>-->
+                                    <!--                            </div>-->
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="order : ${otchet.orderForFabrics}">
+                                <td><a th:text="${order.status.title}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                                </td>
+                                <td><a th:text="${order.id}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
+                                <td><a th:text="${order.orderDate}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                                </td>
+                                <td><a th:text="${order.totalPrice} + ' руб.'"
+                                       th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                                <td><a th:text="${order.pointOfSale.name}"
+                                       th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
+                            </tr>
+                            <tr th:each="order : ${otchet.orderForLegals}">
+                                <td><a th:text="${order.status.title}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                                </td>
+                                <td><a th:text="${order.id}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
+                                <td><a th:text="${order.orderDate}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a>
+                                </td>
+                                <td><a th:text="${order.totalPrice} + ' руб.'"
+                                       th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                                <td><a th:text="${order.fabric.name}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group">
-                        <label for="customerName">От</label>
-                        <input type="date" id="customerName" name="customerName" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="customerPhone">До</label>
-                        <input type="date" id="customerPhone" name="customerPhone" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="textarea">Описание</label>
-                        <textarea id="textarea" name="customerPhone" disabled></textarea>
-                    </div>
-                </div>
-                <div class="actions">
-                    <button type="submit" class="btn">Удалить отчет</button>
-                </div>
-                <table class="documents-table">
-                    <thead>
-                        <tr>
-                            <th>Наименование
-                            </th>
-                            <th>Общий габарит</th>
-                            <th>Стоимость</th>
-                            <th>Количество</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="status status-active">Активен</span></td>
-                            <td class="document-name">Договор №1245 от 15.03.2025</td>
-                            <td class="document-date">26.03.2025 14:30</td>
-                            <td>Договор</td>
 
 
-                        </tr>
-                        <tr>
-                            <td><span class="status">Черновик</span></td>
-                            <td>Акт</td>
-                            <td>ИП Смирнов А.А.</td>
-                            <td class="document-name">Акт выполненных работ №45</td>
-                            
+                </form>
 
-                        </tr>
-                        <tr>
-                            <td><span class="status status-active">Активен</span></td>
-                            <td>Счет</td>
-                            <td>ООО "СтройГарант"</td>
-                            <td class="document-name">Счет на оплату №678</td>
-                            
-
-                        </tr>
-                    </tbody>
-                </table>  
             </div>
-            
-            
-            
 
-        </form>
-       
+        </div>
     </div>
-
-</div>
-
 </body>
 </html>

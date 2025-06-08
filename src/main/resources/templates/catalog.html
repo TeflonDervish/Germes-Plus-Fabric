@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документооборот</title>
-    <link rel="stylesheet" th:href="@{/style/for_point.css}" />
+    <link rel="stylesheet" th:href="@{/style/for_point.css}"/>
     <style>
         #orderStatus {
 
@@ -47,108 +47,106 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <header class="fixed">
-            <div class="nav-and-search">
-                <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+<div class="wrapper">
+    <header class="fixed">
+        <div class="nav-and-search">
+            <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <header class="invisible">
-            <div class="nav-and-search">
-                <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+    </header>
+    <header class="invisible">
+        <div class="nav-and-search">
+            <h1 th:text="${manager.fabric.name}">ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <div class="container">
-            <div class="sidebar fixed">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
-            </div>
-
-            <div class="sidebar invisible">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
-            </div>
-
-            <div class="main-content">
-                <header class="header_for_point">
-                    <div class="nav-and-search" style="display: flex;flex-direction: row;">
-                        <!-- TODO для админа и обычного разные -->
-                         <!-- TODO для юр лиц -->
-                        <button>+ Добавить товар</button> 
-                    </div>
-
-                    <div class="search-container">
-                        <input type="text" placeholder="Поиск...">
-                    </div>
-
-                </header>
-                <table class="documents-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                <span> Артикул</span>
-                            </th>
-                            <th>Наименование</th>
-                            <th>Основа</th>
-                            <th>Наполнение</th>
-                            <th>Общий габарит</th>
-                            <th>Стоимость</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="product : ${products}">
-                            <td><a th:text="${product.article}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.name}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.filling}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.size}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                            <td><a th:text="${product.price}" th:href="@{/order/{id} (id=${product.id})}"></a></td>
-                        </tr>
-                    </tbody>
-                </table>
+    </header>
+    <div class="container">
+        <div class="sidebar fixed">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
             </div>
         </div>
+
+        <div class="sidebar invisible">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
+            </div>
+        </div>
+
+        <div class="main-content">
+            <header class="header_for_point" style="justify-content: flex-end;">
+
+                <div class="search-container">
+                    <form th:action="@{/catalog/search}" method="post">
+                        <input type="text" name="query" placeholder="Поиск...">
+                    </form>
+                </div>
+
+            </header>
+            <table class="documents-table">
+                <thead>
+                <tr>
+                    <th>
+                        <span> Артикул</span>
+                    </th>
+                    <th>Наименование</th>
+                    <th>Основа</th>
+                    <th>Наполнение</th>
+                    <th>Общий габарит</th>
+                    <th>Стоимость</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product : ${products}">
+                    <td><a th:text="${product.article}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                    <td><a th:text="${product.name}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                    <td><a th:text="${product.basis}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                    <td><a th:text="${product.filling}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                    <td><a th:text="${product.size}" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                    <td><a th:text="${product.price} + ' руб.'" th:href="@{/catalog/{id} (id=${product.id})}"></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+</div>
 
-    <script>
-        // Простая реализация фильтрации
-        document.querySelectorAll('.filter-dropdown button').forEach(button => {
-            button.addEventListener('click', function () {
-                const columnIndex = this.closest('th').cellIndex;
-                const select = this.previousElementSibling;
-                const filterValue = select.value;
-                const table = this.closest('table');
+<script>
+    // Простая реализация фильтрации
+    document.querySelectorAll('.filter-dropdown button').forEach(button => {
+        button.addEventListener('click', function () {
+            const columnIndex = this.closest('th').cellIndex;
+            const select = this.previousElementSibling;
+            const filterValue = select.value;
+            const table = this.closest('table');
 
-                table.querySelectorAll('tbody tr').forEach(row => {
-                    const cell = row.cells[columnIndex];
-                    const cellValue = cell.textContent.trim().toLowerCase();
+            table.querySelectorAll('tbody tr').forEach(row => {
+                const cell = row.cells[columnIndex];
+                const cellValue = cell.textContent.trim().toLowerCase();
 
-                    if (filterValue === "" || cellValue.includes(filterValue.toLowerCase())) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
+                if (filterValue === "" || cellValue.includes(filterValue.toLowerCase())) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
             });
         });
-    </script>
+    });
+</script>
 
 
 </body>

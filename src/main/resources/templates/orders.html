@@ -54,12 +54,13 @@
             </div>
         </div>
 
-
         <div class="main-content">
-            <header class="header_for_point">
+            <header class="header_for_point header-order">
 
                 <div class="search-container">
-                    <input type="text" placeholder="Поиск...">
+                    <form th:action="@{/order/search}" method="post">
+                        <input type="text" name="query" placeholder="Поиск...">
+                    </form>
                 </div>
 
             </header>
@@ -68,72 +69,65 @@
                 <tr>
                     <th class="filter-header">
                         <span class="filter-icon">Статус</span>
-                        <div class="filter-dropdown">
-                            <select>
-                                <option value="">Все статусы</option>
-                                <option value="active">В обработке</option>
-                                <option value="draft">Готовится</option>
-                                <option value="archived">Архив</option>
-                            </select>
-                            <button>Применить</button>
-                        </div>
+                        <form th:action="@{/order/status}" method="post">
+                            <div class="filter-dropdown">
+                                <select name="status">
+                                    <option th:each="status : ${status}" th:value="${status}" th:text="${status.title}">
+                                        Ожидает подтверждения
+                                    </option>
+                                </select>
+                                <button>Применить</button>
+                            </div>
+                        </form>
                     </th>
-                    <th>Номер заказа
-                    </th>
+                    <th>Тип заказа</th>
+                    <th>Номер заказа</th>
                     <th>Дата заказа</th>
-                    <th class="filter-header">
-                        <span class="filter-icon">Статус оплаты</span>
-                        <div class="filter-dropdown">
-                            <select>
-                                <option value="">Все направления</option>
-                                <option value="incoming">Оплачен</option>
-                                <option value="outgoing">Не оплачен</option>
-                            </select>
-                            <button>Применить</button>
-                        </div>
-                    </th>
+                    <!--                        <th class="filter-header">-->
+                    <!--                            <span class="filter-icon">Статус оплаты</span>-->
+                    <!--                            <div class="filter-dropdown">-->
+                    <!--                                <select>-->
+                    <!--                                    <option value="">Все направления</option>-->
+                    <!--                                    <option value="incoming">Оплачен</option>-->
+                    <!--                                    <option value="outgoing">Не оплачен</option>-->
+                    <!--                                </select>-->
+                    <!--                                <button>Применить</button>-->
+                    <!--                            </div>-->
+                    <!--                        </th>-->
                     <th>Стоимость заказа</th>
                     <th class="filter-header">
-                        <span class="filter-icon">Магазин</span>
-                        <div class="filter-dropdown">
-                            <select>
-                                <option value="">Все направления</option>
-                                <option value="incoming">Входящий</option>
-                                <option value="outgoing">Исходящий</option>
-                                <option value="internal">Внутренний</option>
-                            </select>
-                            <button>Применить</button>
-                        </div>
+                        <!--                            <span class="filter-icon">-->
+                        Магазин
+                        <!--                            </span>-->
+                        <!--                            <div class="filter-dropdown">-->
+                        <!--                                <select>-->
+                        <!--                                    <option value="">Все направления</option>-->
+                        <!--                                    <option value="incoming">Входящий</option>-->
+                        <!--                                    <option value="outgoing">Исходящий</option>-->
+                        <!--                                    <option value="internal">Внутренний</option>-->
+                        <!--                                </select>-->
+                        <!--                                <button>Применить</button>-->
+                        <!--                            </div>-->
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><span class="status status-active">Активен</span></td>
-                    <td class="document-name">Договор №1245 от 15.03.2025</td>
-                    <td class="document-date">26.03.2025 14:30</td>
-                    <td>Договор</td>
-                    <td>ООО "ТехноПром"</td>
-
-                    <td>Входящий</td>
-
-                </tr>
-                <tr>
-                    <td><span class="status">Черновик</span></td>
-                    <td>Акт</td>
-                    <td>ИП Смирнов А.А.</td>
-                    <td class="document-name">Акт выполненных работ №45</td>
-                    <td class="document-date">25.03.2025 10:15</td>
-                    <td>Исходящий</td>
+                <tr th:each="order : ${orderForFabrics}">
+                    <td><a th:text="${order.status.title}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="'Заказ с фабрики'" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.id}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.orderDate}" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.totalPrice} + ' руб.'" th:href="@{/order/fabric/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.pointOfSale.name}" th:href="@{/order/fabirc/{id} (id=${order.id})}"></a></td>
 
                 </tr>
-                <tr>
-                    <td><span class="status status-active">Активен</span></td>
-                    <td>Счет</td>
-                    <td>ООО "СтройГарант"</td>
-                    <td class="document-name">Счет на оплату №678</td>
-                    <td class="document-date">24.03.2025 16:45</td>
-                    <td>Внутренний</td>
+                <tr th:each="order : ${orderForLegals}">
+                    <td><a th:text="${order.status.title}" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="'Заказ юр лиц'" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.id}" th:href="@{/order/leagl/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.orderDate}" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.totalPrice} + ' руб.'" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
+                    <td><a th:text="${order.fabric.name}" th:href="@{/order/legal/{id} (id=${order.id})}"></a></td>
 
                 </tr>
                 </tbody>

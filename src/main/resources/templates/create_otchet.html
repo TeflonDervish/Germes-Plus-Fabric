@@ -443,25 +443,25 @@
         <div class="container_zakaz">
             <h1>Создание нового отчета</h1>
 
-            <form id="orderForm">
+            <form id="orderForm" th:action="@{/otchet/create}" method="post">
                 <div class="form-section">
                     <div class="section-title">Данные отчета</div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="customerName">Наименование</label>
-                            <input type="text" id="customerName" name="customerName" required>
+                            <input type="text" id="customerName" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="customerName">От</label>
-                            <input type="date" id="customerName" name="customerName" required>
+                            <input type="date" id="customerName" name="startDate" required>
                         </div>
                         <div class="form-group">
                             <label for="customerPhone">До</label>
-                            <input type="date" id="customerPhone" name="customerPhone" required>
+                            <input type="date" id="customerPhone" name="endDate" required>
                         </div>
                         <div class="form-group">
                             <label for="textarea">Описание</label>
-                            <textarea id="textarea" name="customerPhone"></textarea>
+                            <textarea id="textarea" name="description"></textarea>
                         </div>
                     </div>
                 </div>

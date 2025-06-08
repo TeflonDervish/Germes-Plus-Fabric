@@ -136,7 +136,7 @@ public class OrderController {
             @AuthenticationPrincipal FabricManager manager
     ) {
         orderForLegalService.changeOrderStatus(id, OrderStatus.valueOf(status), manager);
-        return "redirect:/order/fabric/" + id;
+        return "redirect:/order/legal/" + id;
     }
 
 

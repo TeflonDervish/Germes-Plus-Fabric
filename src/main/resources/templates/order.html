@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Документооборот</title>
-    <link rel="stylesheet" th:href="@{/style/for_point.css}" />
+    <link rel="stylesheet" th:href="@{/style/for_point.css}"/>
 
 
     <style>
@@ -44,8 +44,7 @@
 
         .status-processing {
             display: flex;
-            background-color: #333a55a9;
-            ;
+            background-color: #333a55a9;;
             color: white;
             justify-content: space-between;
             align-items: center;
@@ -205,168 +204,183 @@
 
 <body>
 
-    <div class="wrapper">
-        <header class="fixed">
-            <div class="nav-and-search">
-                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+<div class="wrapper">
+    <header class="fixed">
+        <div class="nav-and-search">
+            <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <header class="invisible">
-            <div class="nav-and-search">
-                <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
-            </div>
-            <div class="icons">
-                <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
-            </div>
+    </header>
+    <header class="invisible">
+        <div class="nav-and-search">
+            <h1>ООО "ГЕРМЕС-ПЛЮС"</h1>
+        </div>
+        <div class="icons">
+            <a th:href="@{/account}"> <img height="35px" th:src="@{/img/header/user.png}"></a>
+        </div>
 
-        </header>
-        <div class="container">
-            <div class="sidebar fixed">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
-            </div>
-
-            <div class="sidebar invisible">
-                <a th:href="@{/order}">Заказы</a>
-                <a th:href="@{/sclad}">Товары на складе</a>
-                <a th:href="@{/otchet}">Отчетность</a>
-                <a th:href="@{/catalog}">Каталог</a>
-                <div class="logo-container">
-                    <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
-                </div>
-            </div>
-            <div class="container_zakaz">
-                <div class="order-header">
-                    <h1>Заказ: Диван "Лорд"</h1>
-                    <div>
-                        <span class="order-number">№ 23456789</span>
-                    </div>
-                </div>
-                <form th:action="@{/order/change-status/fabric/{id} (id=${order.id})}" method="post" th:if="${typeOrder} == 'fabric'">
-                    <div class="order-status status-processing" id="statusContainer">
-                        <div style="display: grid;grid-template-columns: 1fr 1fr;gap: 10px 30px;     align-items: center;">
-                            <label for="status" style="font-weight: lighter;">Статус заказа:</label>
-                            <div id="status">
-                                <span id="statusText" th:text="${order.status.title}">В обработке</span>
-                                <select id="statusSelect" style="display: none;" name="status">
-                                    <option th:value="${status}" th:each="status : ${status}" th:text="${status.title}">В обработке</option>
-                                </select>
-                            </div>
-                            <!--                    <label for="statusOplaty" style="font-weight: lighter;">Статус оплаты:</label>-->
-                            <!--                    <div id="statusOplaty">-->
-                            <!--                        <span id="statusMoney">Не оплачен</span>-->
-                            <!--                        <select id="statusSelectMoney" style="display: none;">-->
-                            <!--                            <option value="processing">Не оплачен</option>-->
-                            <!--                            <option value="shipped">В доставке</option>-->
-                            <!--                            <option value="canceled">Доставлен</option>-->
-                            <!--                            <option value="delivered">Оплачен</option>-->
-                            <!--                            <option value="canceled">Отменен</option>-->
-                            <!--                        </select>-->
-                            <!--                    </div>-->
-                        </div>
-
-                        <button id="changeButton" type="button">Изменить</button>
-                    </div>
-                </form>
-                <form th:action="@{/order/change-status/legal/{id} (id=${order.id})}" method="post" th:if="${typeOrder} == 'legal'">
-                    <div class="order-status status-processing" id="statusContainer">
-                        <div style="display: grid;grid-template-columns: 1fr 1fr;gap: 10px 30px;     align-items: center;">
-                            <label for="status" style="font-weight: lighter;">Статус заказа:</label>
-                            <div id="status">
-                                <span id="statusTextLegal" th:text="${order.status.title}">В обработке</span>
-                                <select id="statusSelectLegal" style="display: none;" name="status">
-                                    <option th:value="${status}" th:each="status : ${status}" th:text="${status.title}">В обработке</option>
-                                </select>
-                            </div>
-                            <!--                    <label for="statusOplaty" style="font-weight: lighter;">Статус оплаты:</label>-->
-                            <!--                    <div id="statusOplaty">-->
-                            <!--                        <span id="statusMoney">Не оплачен</span>-->
-                            <!--                        <select id="statusSelectMoney" style="display: none;">-->
-                            <!--                            <option value="processing">Не оплачен</option>-->
-                            <!--                            <option value="shipped">В доставке</option>-->
-                            <!--                            <option value="canceled">Доставлен</option>-->
-                            <!--                            <option value="delivered">Оплачен</option>-->
-                            <!--                            <option value="canceled">Отменен</option>-->
-                            <!--                        </select>-->
-                            <!--                    </div>-->
-                        </div>
-
-                        <button id="changeButtonLegal" type="button">Изменить</button>
-                    </div>
-                </form>
-
-                <div class="section">
-                    <div class="section-title">Характеристики товара</div>
-                    <table class="product-list">
-                        <thead>
-                        <tr>
-                            <th>Наименование</th>
-                            <!--                        <th>Характеристики</th>-->
-                            <th>Количество</th>
-                            <th>Цена</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="product : ${order.products}">
-                            <td th:text="${product.name}">Диван Лорд</td>
-                            <!--                        <td th:text="${product.size}">-->
-                            <!--                            <p>Габрит:</p>-->
-                            <!--                            <p>Спальное место:</p>-->
-                            <!--                        </td>-->
-                            <td>1</td>
-                            <td th:text="${product.price} + ' руб.'">54 990 ₽</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="total-summary">
-                        <div style="font-size: 1.2em; margin-top: 5px;" th:text="'Итого: ' + ${order.totalPrice} + ' руб.'">Итого: 56 980 ₽</div>
-                    </div>
-                </div>
-
-                <div class="two-columns">
-                    <div class="column">
-                        <div class="section" th:if="${typeOrder} == 'fabric'">
-                            <div class="section-title">Данные магазина</div>
-                            <p th:text="'Наименование: ' + ${order.pointOfSale.name}"><strong>Наименование:</strong> Иванов Иван Иванович</p>
-                            <p th:text="'Адрес: ' + ${order.pointOfSale.address}"><strong>Адрес:</strong>г. Уфа</p>
-                            <p th:text="'Телефон: ' + ${order.pointOfSale.phoneNumber}"><strong>Телефон:</strong> +7 (123) 456-78-90</p>
-                            <p th:text="'Email: ' + ${order.pointOfSale.email}"><strong>Email:</strong> ivanov@example.com</p>
-                        </div>
-                        <div class="section" th:if="${typeOrder} == 'legal'">
-                            <div class="section-title">Данные магазина</div>
-                            <p th:text="'Наименование: ' + ${order.fabric.name}"><strong>Наименование:</strong> Иванов Иван Иванович</p>
-                            <p th:text="'Адрес: ' + ${order.fabric.address}"><strong>Адрес:</strong>г. Уфа</p>
-                            <p th:text="'Телефон: ' + ${order.fabric.phoneNumber}"><strong>Телефон:</strong> +7 (123) 456-78-90</p>
-                            <p th:text="'Email: ' + ${order.fabric.email}"><strong>Email:</strong> ivanov@example.com</p>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="section">
-                    <div class="section-title">Документы</div>
-                    <a href="/documents/contract.docx" class="download-link">Скачать договор (DOCX)</a>
-                </div>
-
+    </header>
+    <div class="container">
+        <div class="sidebar fixed">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
             </div>
         </div>
 
+        <div class="sidebar invisible">
+            <a th:href="@{/order}">Заказы</a>
+            <a th:href="@{/sclad}">Товары на складе</a>
+            <a th:href="@{/otchet}">Отчетность</a>
+            <a th:href="@{/catalog}">Каталог</a>
+            <div class="logo-container">
+                <img height="150px" th:src="@{/img/body/forLoginRegistration/germes.png}" alt="">
+            </div>
+        </div>
+        <div class="container_zakaz">
+            <div class="order-header">
+                <h1>Заказ: Диван "Лорд"</h1>
+                <div>
+                    <span class="order-number">№ 23456789</span>
+                </div>
+            </div>
+            <form th:action="@{/order/change-status/fabric/{id} (id=${order.id})}" method="post"
+                  th:if="${typeOrder} == 'fabric'">
+                <div class="order-status status-processing" id="statusContainer">
+                    <div style="display: grid;grid-template-columns: 1fr 1fr;gap: 10px 30px;     align-items: center;">
+                        <label for="status" style="font-weight: lighter;">Статус заказа:</label>
+                        <div id="status">
+                            <span id="statusText" th:text="${order.status.title}">В обработке</span>
+                            <select id="statusSelect" style="display: none;" name="status">
+                                <option th:value="${status}" th:each="status : ${status}" th:text="${status.title}">В
+                                    обработке
+                                </option>
+                            </select>
+                        </div>
+                        <!--                    <label for="statusOplaty" style="font-weight: lighter;">Статус оплаты:</label>-->
+                        <!--                    <div id="statusOplaty">-->
+                        <!--                        <span id="statusMoney">Не оплачен</span>-->
+                        <!--                        <select id="statusSelectMoney" style="display: none;">-->
+                        <!--                            <option value="processing">Не оплачен</option>-->
+                        <!--                            <option value="shipped">В доставке</option>-->
+                        <!--                            <option value="canceled">Доставлен</option>-->
+                        <!--                            <option value="delivered">Оплачен</option>-->
+                        <!--                            <option value="canceled">Отменен</option>-->
+                        <!--                        </select>-->
+                        <!--                    </div>-->
+                    </div>
+
+                    <button id="changeButton" type="button">Изменить</button>
+                </div>
+            </form>
+            <form th:action="@{/order/change-status/legal/{id} (id=${order.id})}" method="post"
+                  th:if="${typeOrder} == 'legal'">
+                <div class="order-status status-processing" id="statusContainer">
+                    <div style="display: grid;grid-template-columns: 1fr 1fr;gap: 10px 30px;     align-items: center;">
+                        <label for="status" style="font-weight: lighter;">Статус заказа:</label>
+                        <div id="status">
+                            <span id="statusTextLegal" th:text="${order.status.title}">В обработке</span>
+                            <select id="statusSelectLegal" style="display: none;" name="status">
+                                <option th:value="${status}" th:each="status : ${status}" th:text="${status.title}">В
+                                    обработке
+                                </option>
+                            </select>
+                        </div>
+                        <!--                    <label for="statusOplaty" style="font-weight: lighter;">Статус оплаты:</label>-->
+                        <!--                    <div id="statusOplaty">-->
+                        <!--                        <span id="statusMoney">Не оплачен</span>-->
+                        <!--                        <select id="statusSelectMoney" style="display: none;">-->
+                        <!--                            <option value="processing">Не оплачен</option>-->
+                        <!--                            <option value="shipped">В доставке</option>-->
+                        <!--                            <option value="canceled">Доставлен</option>-->
+                        <!--                            <option value="delivered">Оплачен</option>-->
+                        <!--                            <option value="canceled">Отменен</option>-->
+                        <!--                        </select>-->
+                        <!--                    </div>-->
+                    </div>
+
+                    <button id="changeButtonLegal" type="button">Изменить</button>
+                </div>
+            </form>
+
+            <div class="section">
+                <div class="section-title">Характеристики товара</div>
+                <table class="product-list">
+                    <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <!--                        <th>Характеристики</th>-->
+                        <th>Количество</th>
+                        <th>Цена</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${order.products}">
+                        <td th:text="${product.name}">Диван Лорд</td>
+                        <!--                        <td th:text="${product.size}">-->
+                        <!--                            <p>Габрит:</p>-->
+                        <!--                            <p>Спальное место:</p>-->
+                        <!--                        </td>-->
+                        <td>1</td>
+                        <td th:text="${product.price} + ' руб.'">54 990 ₽</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="total-summary">
+                    <div style="font-size: 1.2em; margin-top: 5px;" th:text="'Итого: ' + ${order.totalPrice} + ' руб.'">
+                        Итого: 56 980 ₽
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <div class="column">
+                    <div class="section" th:if="${typeOrder} == 'fabric'">
+                        <div class="section-title">Данные магазина</div>
+                        <p th:text="'Наименование: ' + ${order.pointOfSale.name}"><strong>Наименование:</strong> Иванов
+                            Иван Иванович</p>
+                        <p th:text="'Адрес: ' + ${order.pointOfSale.address}"><strong>Адрес:</strong>г. Уфа</p>
+                        <p th:text="'Телефон: ' + ${order.pointOfSale.phoneNumber}"><strong>Телефон:</strong> +7 (123)
+                            456-78-90</p>
+                        <p th:text="'Email: ' + ${order.pointOfSale.email}"><strong>Email:</strong> ivanov@example.com
+                        </p>
+                    </div>
+                    <div class="section" th:if="${typeOrder} == 'legal'">
+                        <div class="section-title">Данные магазина</div>
+                        <p th:text="'Наименование: ' + ${order.fabric.name}"><strong>Наименование:</strong> Иванов Иван
+                            Иванович</p>
+                        <p th:text="'Адрес: ' + ${order.fabric.address}"><strong>Адрес:</strong>г. Уфа</p>
+                        <p th:text="'Телефон: ' + ${order.fabric.phoneNumber}"><strong>Телефон:</strong> +7 (123)
+                            456-78-90</p>
+                        <p th:text="'Email: ' + ${order.fabric.email}"><strong>Email:</strong> ivanov@example.com</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="section">
+                <div class="section-title">Документы</div>
+                <a href="/documents/contract.docx" class="download-link">Скачать договор (DOCX)</a>
+            </div>
+
+        </div>
     </div>
 
+</div>
 
-    <script>
-        const changeButton = document.getElementById('changeButton');
+
+<script>
+    // Handle fabric order form
+    const changeButton = document.getElementById('changeButton');
+    if (changeButton) {  // Only run this if the element exists
         const statusText = document.getElementById('statusText');
         const statusSelect = document.getElementById('statusSelect');
         const form = changeButton.closest('form');
@@ -375,43 +389,42 @@
 
         changeButton.addEventListener('click', function (e) {
             if (!editMode) {
-                // Первый клик — переход в режим редактирования
+                // First click - enter edit mode
                 statusText.style.display = 'none';
                 statusSelect.style.display = 'inline-block';
                 changeButton.textContent = 'Сохранить';
                 editMode = true;
             } else {
-                // Второй клик — отправка формы
-                e.preventDefault(); // Предотврати стандартное поведение
-
-                form.submit(); // Явно отправь форму
+                // Second click - submit form
+                e.preventDefault();
+                form.submit();
             }
         });
+    }
 
-        const changeButtonLegal = document.getElementById('changeButtonLegal');
+    // Handle legal order form
+    const changeButtonLegal = document.getElementById('changeButtonLegal');
+    if (changeButtonLegal) {  // Only run this if the element exists
         const statusTextLegal = document.getElementById('statusTextLegal');
         const statusSelectLegal = document.getElementById('statusSelectLegal');
-        const formLegal = changeButton.closest('form');
+        const formLegal = changeButtonLegal.closest('form');
 
         let editModeLegal = false;
 
         changeButtonLegal.addEventListener('click', function (e) {
             if (!editModeLegal) {
-                // Первый клик — переход в режим редактирования
+                // First click - enter edit mode
                 statusTextLegal.style.display = 'none';
                 statusSelectLegal.style.display = 'inline-block';
                 changeButtonLegal.textContent = 'Сохранить';
                 editModeLegal = true;
             } else {
-                // Второй клик — отправка формы
-                e.preventDefault(); // Предотврати стандартное поведение
-
-                formLegal.submit(); // Явно отправь форму
+                // Second click - submit form
+                e.preventDefault();
+                formLegal.submit();
             }
         });
-    </script>
-
-
+    }
+</script>
 </body>
-
 </html>

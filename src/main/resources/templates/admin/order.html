@@ -369,49 +369,53 @@
 
 
 <script>
+    // Handle fabric order form
     const changeButton = document.getElementById('changeButton');
-    const statusText = document.getElementById('statusText');
-    const statusSelect = document.getElementById('statusSelect');
-    const form = changeButton.closest('form');
+    if (changeButton) {  // Only run this if the element exists
+        const statusText = document.getElementById('statusText');
+        const statusSelect = document.getElementById('statusSelect');
+        const form = changeButton.closest('form');
 
-    let editMode = false;
+        let editMode = false;
 
-    changeButton.addEventListener('click', function (e) {
-        if (!editMode) {
-            // Первый клик — переход в режим редактирования
-            statusText.style.display = 'none';
-            statusSelect.style.display = 'inline-block';
-            changeButton.textContent = 'Сохранить';
-            editMode = true;
-        } else {
-            // Второй клик — отправка формы
-            e.preventDefault(); // Предотврати стандартное поведение
+        changeButton.addEventListener('click', function (e) {
+            if (!editMode) {
+                // First click - enter edit mode
+                statusText.style.display = 'none';
+                statusSelect.style.display = 'inline-block';
+                changeButton.textContent = 'Сохранить';
+                editMode = true;
+            } else {
+                // Second click - submit form
+                e.preventDefault();
+                form.submit();
+            }
+        });
+    }
 
-            form.submit(); // Явно отправь форму
-        }
-    });
-
+    // Handle legal order form
     const changeButtonLegal = document.getElementById('changeButtonLegal');
-    const statusTextLegal = document.getElementById('statusTextLegal');
-    const statusSelectLegal = document.getElementById('statusSelectLegal');
-    const formLegal = changeButton.closest('form');
+    if (changeButtonLegal) {  // Only run this if the element exists
+        const statusTextLegal = document.getElementById('statusTextLegal');
+        const statusSelectLegal = document.getElementById('statusSelectLegal');
+        const formLegal = changeButtonLegal.closest('form');
 
-    let editModeLegal = false;
+        let editModeLegal = false;
 
-    changeButtonLegal.addEventListener('click', function (e) {
-        if (!editModeLegal) {
-            // Первый клик — переход в режим редактирования
-            statusTextLegal.style.display = 'none';
-            statusSelectLegal.style.display = 'inline-block';
-            changeButtonLegal.textContent = 'Сохранить';
-            editModeLegal = true;
-        } else {
-            // Второй клик — отправка формы
-            e.preventDefault(); // Предотврати стандартное поведение
-
-            formLegal.submit(); // Явно отправь форму
-        }
-    });
+        changeButtonLegal.addEventListener('click', function (e) {
+            if (!editModeLegal) {
+                // First click - enter edit mode
+                statusTextLegal.style.display = 'none';
+                statusSelectLegal.style.display = 'inline-block';
+                changeButtonLegal.textContent = 'Сохранить';
+                editModeLegal = true;
+            } else {
+                // Second click - submit form
+                e.preventDefault();
+                formLegal.submit();
+            }
+        });
+    }
 </script>
 
 

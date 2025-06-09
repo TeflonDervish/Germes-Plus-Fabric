@@ -114,6 +114,7 @@ public class DocumentController {
         documentPart.addStyledParagraphOfText("Heading2", "Товары:");
         addTableToDocument(documentPart, order);
 
+        documentPart.addParagraphOfText("Итого: " + order.getTotalPrice().toString());
 
         documentPart.addStyledParagraphOfText("Heading2", "Данные заказчика:");
         documentPart.addParagraphOfText("Имя заказчика: " + order.getPointOfSale().getName());

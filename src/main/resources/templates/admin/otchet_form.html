@@ -447,7 +447,10 @@
                     <div class="section-title"
                          style="display: flex; flex-direction: row; justify-content: space-between;">
                         <span>Данные отчета</span>
-                        <button class=" btn-secondary">Скачать отчет</button>
+                        <a th:href="@{/files/otchet/{id}(id=${otchet.id})}">
+                            Скачать отчет
+                        </a>
+<!--                        <button class=" btn-secondary">Скачать отчет</button>-->
                     </div>
                     <div class="form-row">
                         <div class="form-group">

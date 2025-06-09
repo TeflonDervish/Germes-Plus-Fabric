@@ -46,7 +46,7 @@ public class OrderForLegalService {
 
     public OrderForLegal getById(Long id) {
         log.info("Получение по id " + id);
-        return orderForLegalRepository.findById(id).orElse(null);
+        return orderForLegalRepository.findById(id).orElse(new OrderForLegal());
     }
 
     public List<OrderForLegal> getByDateBetween(LocalDate startDate, LocalDate endDate) {
